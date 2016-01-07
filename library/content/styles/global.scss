@@ -1,5 +1,17 @@
 /* Utility Classes */
 
+.top-bar li>a, .top-bar ul li>a {
+  color: #2199e8;
+  text-transform: uppercase;
+}
+
+.top-bar {
+  .button {
+    color: white;
+    text-transform: none;
+  }
+}
+
 /* Inline Margins */
 
 .x1 { margin: 1em }

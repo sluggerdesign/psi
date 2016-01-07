@@ -35,7 +35,11 @@
       <div class="top-bar-left">
         <ul class="menu" data-responsive-menu="accordion">
           <li class="menu-text">PSI SCHEDULE</li>
-          <li><a href="#"></a></li>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/branches">Branches</a></li>
+          <li><a href="/crew">Crew</a></li>
+          <li><a href="/tasks">Tasks</a></li>
+          <li><a href="/admin">Admin</a></li>
         </ul>
       </div>
       <div class="top-bar-right">
