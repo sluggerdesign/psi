@@ -13,7 +13,7 @@ class Login extends CI_Controller {
       //$password = md5($password);
       if($this->authentication->try_login(array('email' => $username, 'password' => $password))) {
 		    redirect('dashboard');
-		    }
+		   }
     }
 
 		$data['title'] = "Sign In | Petroleum Solutions Quote Management";

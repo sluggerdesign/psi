@@ -4,7 +4,7 @@
 
 	var $CI;
 
-	function authentication() {
+	function __Authentication() {
 		$this->CI =& get_instance();
 	}
 
