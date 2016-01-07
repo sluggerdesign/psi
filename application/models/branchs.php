@@ -7,7 +7,7 @@ class branchs extends CI_Model {
     	return $this->db->affected_rows();
 	}
 
-  function getBranches()
+  function getAll()
 	{
 		$q = $this->db->get('branches');
 
@@ -17,5 +17,11 @@ class branchs extends CI_Model {
 			}
 			return $data;
 			}
+	}
+
+	function delete($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('branches');
 	}
 }

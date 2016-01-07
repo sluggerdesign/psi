@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="small-12 columns">
-		<h3 class="x1-top">Dashboard</h3>
+		<h3>Dashboard</h3>
         <?php
             $dt = new DateTime;
             if (isset($_GET['year']) && isset($_GET['week'])) {
@@ -8,14 +8,14 @@
             } else {
                 $dt->setISODate($dt->format('o'), $dt->format('W'));
             }
-            
+
             $year = $dt->format('o');
             $week = $dt->format('W');
-            
+
             ?>
 
             <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week-1).'&year='.$year; ?>">Pre Week</a> <!--Previous week-->
-            <?php 
+            <?php
                 echo date("F d",strtotime('monday this week')).' To '.date("F d",strtotime("sunday this week"));
             ?>
             <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week+1).'&year='.$year; ?>">Next Week</a> <!--Next week-->
