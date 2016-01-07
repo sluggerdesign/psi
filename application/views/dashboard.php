@@ -9,17 +9,16 @@
             } else {
                 $dt->setISODate($dt->format('o'), $dt->format('W'));
             }
-            // echo "<span>" . $dt->format('o') . "</span>\n";
-            // echo "<span>" . $dt->format('W') . "</span>\n";
-            // echo "<span>" . $dt->format('d') . "</span>\n";
+            
             $year = $dt->format('o');
             $week = $dt->format('W');
-            // echo strtotime("now"), "\n";
-            // echo strtotime("saturday"), "\n";
+            
             ?>
 
             <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week-1).'&year='.$year; ?>">Pre Week</a> <!--Previous week-->
-            <?php echo date('F'); echo $dt->format('d') ." <span> - </span> "    ?>
+            <?php 
+                echo date("F d",strtotime('monday this week')).' To '.date("F d",strtotime("sunday this week"));
+            ?>
             <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week+1).'&year='.$year; ?>">Next Week</a> <!--Next week-->
 
             <table>
