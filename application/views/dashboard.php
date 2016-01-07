@@ -1,7 +1,6 @@
 <div class="row">
 	<div class="small-12 columns">
 		<h3 class="x1-top">Dashboard</h3>
-        	<h2 class="x1-top">Welcome!</h2>
         <?php
             $dt = new DateTime;
             if (isset($_GET['year']) && isset($_GET['week'])) {
