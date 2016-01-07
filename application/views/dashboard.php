@@ -11,12 +11,15 @@
             
             $year = $dt->format('o');
             $week = $dt->format('W');
-            
+            $dt->modify('-1 day');
+            $day_start = date( "d", strtotime( $dt->format('Y-m-d H:i:s')));
+            $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+           
             ?>
 
             <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week-1).'&year='.$year; ?>">Pre Week</a> <!--Previous week-->
             <?php 
-                echo date("F d",strtotime('monday this week')).' To '.date("F d",strtotime("sunday this week"));
+                echo date("F d",strtotime('last sunday')).' To '.date("F d",strtotime("saturday this week"));
             ?>
             <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week+1).'&year='.$year; ?>">Next Week</a> <!--Next week-->
 
@@ -24,14 +27,30 @@
                 <tr>
                     <td>Project</td>
                         <?php
-                        do {
-                            echo "<td>" . $dt->format('l') . "<br>" . $dt->format('d M Y') . "</td>\n";
-                            $dt->modify('+1 day');
-                        } while ($week == $dt->format('W'));
+                       for ( $x = 0; $x < 7; $x++ )
+                            echo "<td>".date( "D", mktime( 0, 0, 0, date( "m" ), $day_start + $x, date( "y" ) )). "</td>";
+                        ?>
+                    </tr>
+                    <td>Set Island</td>
+                        <?php
+                       for ( $x = 0; $x < 7; $x++ )
+                            echo "<td>".date( "d", mktime( 0, 0, 0, date( "m" ), $day_start + $x, date( "y" ) )). "</td>";
+                        ?>
+                    </tr>
+                    <td>Pipe</td>
+                        <?php
+                       for ( $x = 0; $x < 7; $x++ )
+                            echo "<td>".date( "d", mktime( 0, 0, 0, date( "m" ), $day_start + $x, date( "y" ) )). "</td>";
                         ?>
                     </tr>
             </table>
 	</div>
 </div>
-	</div>
-</div>
+<!--<?php	
+    $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+    $prev_date = date('Y-m-d', strtotime($date .' -1 day'));
+    $next_date = date('Y-m-d', strtotime($date .' +1 day'));
+?>
+
+<a href="?date=<?=$prev_date;?>">Previous</a>
+<a href="?date=<?=$next_date;?>">Next</a>-->
