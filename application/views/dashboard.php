@@ -26,6 +26,7 @@
 
             <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($nav_week-1).'&year='.$nav_year; ?>">Pre Week</a> <!--Previous week-->
             <?php 
+                echo date("F",$time) . ' ' .date( "d", mktime( 0, 0, 0, $month, $day_start, $year)). ' - ' .date("F", mktime( 0, 0, 0, $month, $day_start + 6, $year)). ' ' .date("d", mktime( 0, 0, 0, $month, $day_start + 6, $year ));
             ?>
             <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($nav_week+1).'&year='.$nav_year; ?>">Next Week</a> <!--Next week-->
             <table>
