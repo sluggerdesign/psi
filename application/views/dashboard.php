@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="small-12 columns">
-		<h3 class="x1-top">Dashboard</h3>
+		<h3>Dashboard</h3>
         <?php
             $dt = new DateTime;
             if (isset($_GET['year']) && isset($_GET['week'])) {
@@ -8,21 +8,22 @@
             } else {
                 $dt->setISODate($dt->format('o'), $dt->format('W'));
             }
-            
+
             $year = $dt->format('o');
             $week = $dt->format('W');
+
             $dt->modify('-1 day');
             $day_start = date( "d", strtotime( $dt->format('Y-m-d H:i:s')));
-            $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+            
            
             ?>
 
             <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week-1).'&year='.$year; ?>">Pre Week</a> <!--Previous week-->
             <?php 
-                echo date("F d",strtotime('last sunday')).' To '.date("F d",strtotime("saturday this week"));
+                // echo date("F d",strtotime('last sunday')).' To '.date("F d",strtotime("saturday this week"));
+                echo date( "F d", mktime( 0, 0, 0, date( "m" ), $day_start, date( "y" ) )). ' To '. date( "d", mktime( 0, 0, 0, date( "m" ), $day_start + 6, date( "y" ) ));
             ?>
             <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week+1).'&year='.$year; ?>">Next Week</a> <!--Next week-->
-
             <table>
                 <tr>
                     <td>Project</td>
@@ -46,11 +47,3 @@
             </table>
 	</div>
 </div>
-<!--<?php	
-    $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
-    $prev_date = date('Y-m-d', strtotime($date .' -1 day'));
-    $next_date = date('Y-m-d', strtotime($date .' +1 day'));
-?>
-
-<a href="?date=<?=$prev_date;?>">Previous</a>
-<a href="?date=<?=$next_date;?>">Next</a>-->

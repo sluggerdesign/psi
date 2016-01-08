@@ -8,7 +8,7 @@ class Branches extends CI_Controller {
 		$this->load->model('branchs');
 
 		$data['title'] = "Branches | Petroleum Solutions Project Management";
-		$data['branches'] = $this->branchs->getBranches();
+		$data['branches'] = $this->branchs->getAll();
 
 		$this->load->view('header', $data);
 		$this->load->view('branches/index');
@@ -41,11 +41,10 @@ class Branches extends CI_Controller {
 		$this->authorize();
 		$this->load->model('branchs');
 
-		$data['title'] = "Delete Branch | Petroleum Solutions Project Management";
+		$this->branchs->delete($this->uri->segment(4));
 
-		$this->load->view('header', $data);
-		$this->load->view('branches/index');
-		$this->load->view('footer');
+		$this->session->set_flashdata('removed', $this->uri->segment(3));
+		redirect('branches/index');
 	}
 
 	// Authentication
