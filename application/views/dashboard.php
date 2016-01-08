@@ -9,39 +9,44 @@
                 $dt->setISODate($dt->format('o'), $dt->format('W'));
             }
 
-            $year = $dt->format('o');
-            $week = $dt->format('W');
+            // Week navigation
+            $nav_year = $dt->format('o');
+            $nav_week = $dt->format('W');
 
+            //Resetting start week to start with Sunday 
             $dt->modify('-1 day');
-            $day_start = date( "d", strtotime( $dt->format('Y-m-d H:i:s')));
             
-           
-            ?>
+            $year = $dt->format('o');
+            $month = $dt->format('m');
+            $time=strtotime($dt->format('Y-m-d H:i:s'));
+            
+            $day_start = date("d", $time);
+            $daysOfWeek = array('SU','MU','TU','WE','TH','FR','SA');
+       ?>
 
-            <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week-1).'&year='.$year; ?>">Pre Week</a> <!--Previous week-->
+            <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($nav_week-1).'&year='.$nav_year; ?>">Pre Week</a> <!--Previous week-->
             <?php 
-                // echo date("F d",strtotime('last sunday')).' To '.date("F d",strtotime("saturday this week"));
-                echo date( "F d", mktime( 0, 0, 0, date( "m" ), $day_start, date( "y" ) )). ' To '. date( "d", mktime( 0, 0, 0, date( "m" ), $day_start + 6, date( "y" ) ));
+                echo date("F",$time) . ' ' .date( "d", mktime( 0, 0, 0, date( "m" ), $day_start, date( "y" ) )). ' - ' .date("d", mktime( 0, 0, 0, date( "m" ), $day_start + 6, date( "y" ) ));
             ?>
-            <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week+1).'&year='.$year; ?>">Next Week</a> <!--Next week-->
+            <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($nav_week+1).'&year='.$nav_year; ?>">Next Week</a> <!--Next week-->
             <table>
                 <tr>
                     <td>Project</td>
                         <?php
                        for ( $x = 0; $x < 7; $x++ )
-                            echo "<td>".date( "D", mktime( 0, 0, 0, date( "m" ), $day_start + $x, date( "y" ) )). "</td>";
+                            echo "<td>".$daysOfWeek[$x]. "</td>";
                         ?>
                     </tr>
                     <td>Set Island</td>
                         <?php
                        for ( $x = 0; $x < 7; $x++ )
-                            echo "<td>".date( "d", mktime( 0, 0, 0, date( "m" ), $day_start + $x, date( "y" ) )). "</td>";
+                            echo "<td>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
                         ?>
                     </tr>
                     <td>Pipe</td>
                         <?php
                        for ( $x = 0; $x < 7; $x++ )
-                            echo "<td>".date( "d", mktime( 0, 0, 0, date( "m" ), $day_start + $x, date( "y" ) )). "</td>";
+                            echo "<td>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
                         ?>
                     </tr>
             </table>
