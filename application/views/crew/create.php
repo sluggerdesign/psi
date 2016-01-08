@@ -1,14 +1,14 @@
 <div class="row">
 	<div class="small-12 columns">
-		<h3>Add Branch</h3>
+		<h3>Add Crew</h3>
 	</div>
 </div>
 
-<?php echo form_open('branches/create');?>
+<?php echo form_open('crew/create');?>
   <div class="row">
       <div class="small-5 columns">
-        <label for="Branch Name">Branch Name
-          <input class="small-5 columns" name="name" id="name" type="text" placeholder="Branch Name">
+        <label for="Crew Name">Crew Name
+          <input class="small-5 columns" name="name" id="name" type="text" placeholder="Crew Name">
         </label>
       </div>
   </div>

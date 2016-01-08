@@ -1,17 +1,17 @@
 <div class="row">
 	<div class="small-12 columns">
-		<h3>Edit Branch</h3>
+		<h3>Edit Task</h3>
 	</div>
 </div>
 
-<?php if(isset($branch)) : foreach($branch as $b) : ?>
+<?php if(isset($task)) : foreach($task as $t) : ?>
 
-  <?php echo form_open('branches/edit');?>
+  <?php echo form_open('tasks/edit');?>
     <div class="row">
         <div class="small-5 columns">
-          <label for="Branch Name">Branch Name
-            <input class="small-5 columns" name="name" id="name" type="text" placeholder="Branch Name" value="<?=$b->name;?>">
-            <input name="id" id="id" type="hidden" value="<?=$b->id;?>">
+          <label for="Task Name">Task Name
+            <input class="small-5 columns" name="name" id="name" type="text" placeholder="Task Name" value="<?=$t->name;?>">
+            <input name="id" id="id" type="hidden" value="<?=$t->id;?>">
           </label>
         </div>
     </div>

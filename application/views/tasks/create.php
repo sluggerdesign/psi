@@ -4,11 +4,11 @@
 	</div>
 </div>
 
-<?php echo form_open('branches/create');?>
+<?php echo form_open('tasks/create');?>
   <div class="row">
       <div class="small-5 columns">
-        <label for="Branch Name">Branch Name
-          <input class="small-5 columns" name="name" id="name" type="text" placeholder="Branch Name">
+        <label for="Task Name">Task Name
+          <input class="small-5 columns" name="name" id="name" type="text" placeholder="Task Name">
         </label>
       </div>
   </div>

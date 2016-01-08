@@ -1,23 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Branches extends CI_Controller {
+class Tasks extends CI_Controller {
 
 	public function index() {
 		$this->authorize();
-		$this->load->model('branchesModel');
+		$this->load->model('tasksModel');
 
-		$data['title'] = "Branches | Petroleum Solutions Project Management";
-		$data['branches'] = $this->branchesModel->getRecords();
+		$data['title'] = "Tasks | Petroleum Solutions Project Management";
+		$data['tasks'] = $this->tasksModel->getRecords();
 
 		$this->load->view('header', $data);
-		$this->load->view('branches/index');
+		$this->load->view('tasks/index');
 		$this->load->view('footer');
 	}
 
 	public function create() {
 		$this->authorize();
-		$this->load->model('branchesModel');
+		$this->load->model('tasksModel');
 
 		if($_POST) {
 			$name = $this->sanitize->trimFirstCaps($this->input->post('name'));
@@ -26,24 +26,24 @@ class Branches extends CI_Controller {
 				'name' => $name
 			);
 
-			$this->branchesModel->create($data);
+			$this->tasksModel->create($data);
 
 			$this->session->set_flashdata('added', $name);
-			redirect('branches/index');
+			redirect('tasks/index');
 		}
 
 		$data['title'] = "Add Branch | Petroleum Solutions Project Management";
 
 		$this->load->view('header', $data);
-		$this->load->view('branches/create');
+		$this->load->view('tasks/create');
 		$this->load->view('footer');
 	}
 
 	public function edit() {
 		$this->authorize();
-		$this->load->model('branchesModel');
+		$this->load->model('tasksModel');
 
-		$data['branch'] = $this->branchesModel->getRecord($this->uri->segment(3));
+		$data['task'] = $this->tasksModel->getRecord($this->uri->segment(3));
 
 		if($_POST) {
 			$id = $this->input->post('id');
@@ -53,27 +53,27 @@ class Branches extends CI_Controller {
 				'name' => $name
 			);
 
-			$this->branchesModel->update($data, $id);
+			$this->tasksModel->update($data, $id);
 
 			$this->session->set_flashdata('updated', $name);
-			redirect('branches/index');
+			redirect('tasks/index');
 		}
 
 		$data['title'] = "Edit Branch | Petroleum Solutions Project Management";
 
 		$this->load->view('header', $data);
-		$this->load->view('branches/edit');
+		$this->load->view('tasks/edit');
 		$this->load->view('footer');
 	}
 
 	public function delete() {
 		$this->authorize();
-		$this->load->model('branchesModel');
+		$this->load->model('tasksModel');
 
-		$this->branchesModel->delete($this->uri->segment(3));
+		$this->tasksModel->delete($this->uri->segment(3));
 
 		$this->session->set_flashdata('removed', urldecode($this->uri->segment(4)));
-		redirect('branches/index');
+		redirect('tasks/index');
 	}
 
 	// Authentication
