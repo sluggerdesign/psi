@@ -21,6 +21,7 @@ class branchesModel extends CI_Model {
 
   function getRecords()
 	{
+		$this->db->order_by("name", "asc"); 
 		$q = $this->db->get('branches');
 
 		if($q->num_rows() > 0){

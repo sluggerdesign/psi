@@ -1,6 +1,6 @@
 <?php
 
-class crewModel extends CI_Model {
+class usersModel extends CI_Model {
 
 	function getAffectedRows()
 	{
@@ -9,7 +9,7 @@ class crewModel extends CI_Model {
 
 	function getRecord($id) {
 		$this->db->where('id', $id);
-		$q = $this->db->get('crew');
+		$q = $this->db->get('users');
 
 		if($q->num_rows() > 0) {
 			foreach ($q->result() as $row) {
@@ -21,8 +21,8 @@ class crewModel extends CI_Model {
 
   function getRecords()
 	{
-		$this->db->order_by("name", "asc"); 
-		$q = $this->db->get('crew');
+		$this->db->order_by("name", "asc");
+		$q = $this->db->get('users');
 
 		if($q->num_rows() > 0){
 				foreach($q->result() as $row) {
@@ -34,20 +34,20 @@ class crewModel extends CI_Model {
 
 	function create($data)
 	{
-		$this->db->insert('crew', $data);
+		$this->db->insert('users', $data);
 		return;
 	}
 
 	function update($data, $id)
 	{
 		$this->db->where('id', $id);
-		$this->db->update('crew', $data);
+		$this->db->update('users', $data);
 		return;
 	}
 
 	function delete($id)
 	{
 		$this->db->where('id', $id);
-		$this->db->delete('crew');
+		$this->db->delete('users');
 	}
 }

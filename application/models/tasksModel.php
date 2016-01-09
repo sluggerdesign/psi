@@ -21,6 +21,7 @@ class tasksModel extends CI_Model {
 
   function getRecords()
 	{
+		$this->db->order_by("name", "asc"); 
 		$q = $this->db->get('tasks');
 
 		if($q->num_rows() > 0){

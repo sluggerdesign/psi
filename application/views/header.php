@@ -9,7 +9,7 @@
 
     <title></title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Core CSS -->
     <link rel="stylesheet" href="<?=base_url()?>library/content/styles/foundation.css" type="text/css" media="all">
     <link rel="stylesheet" href="<?=base_url()?>library/content/styles/main.css" type="text/css" media="all">
     <link rel="stylesheet" href="<?=base_url()?>library/content/styles/foundation-icons/foundation-icons.css" type="text/css" media="all">
@@ -18,6 +18,7 @@
 
     <!-- Google Fonts -->
 
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,10 +39,11 @@
           <ul class="menu" data-responsive-menu="accordion">
             <li class="menu-text">PSI SCHEDULE</li>
             <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/projects">Projects</a></li>
             <li><a href="/branches">Branches</a></li>
             <li><a href="/crew">Crew</a></li>
             <li><a href="/tasks">Tasks</a></li>
-            <li><a href="/admin">Admin</a></li>
+            <li><a href="/users">Users</a></li>
           </ul>
         </div>
         <div class="top-bar-right">

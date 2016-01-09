@@ -1,18 +1,22 @@
 <?php if($_POST) : ?>
 
 	<div class="row">
-		<div class="small-12 columns">
-			<h5 class="x1-top">Oops! Your username or password were incorrect. Try again.</h5>
-		</div>
+	  <div class="small-12 columns">
+	    <div class="callout alert">
+	      <p>Oops! Your username or password were incorrect. Please try again.</p>
+	    </div>
+	  </div>
 	</div>
 
 <?php else : ?>
 
 	<div class="row">
-    <div class="small-12 columns">
-      <h5 class="x1-top">Welcome! Please enter your username and password below.</h5>
-    </div>
-  </div>
+	  <div class="small-12 columns">
+	    <div class="callout secondary">
+	      <p>Welcome! Please enter your username and password below.</p>
+	    </div>
+	  </div>
+	</div>
 
 <?php endif; ?>
 
