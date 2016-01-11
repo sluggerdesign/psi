@@ -31,7 +31,7 @@ class Work extends CI_Controller {
 			$this->Workmodel->create($data);
 
 			$this->session->set_flashdata('addedtask', $task);
-			redirect('projects/edit/' . $project);
+			redirect('jobs/edit/' . $project);
 		}
 	}
 
@@ -65,7 +65,7 @@ class Work extends CI_Controller {
 			$this->Workmodel->update($data, $id);
 
 			$this->session->set_flashdata('updatedtask', $task);
-			redirect('projects/edit/' . $project);
+			redirect('jobs/edit/' . $project);
 		}
 
 		$id = $this->uri->segment(3);
@@ -81,7 +81,7 @@ class Work extends CI_Controller {
 		$this->Workmodel->delete($this->uri->segment(3));
 
 		$this->session->set_flashdata('removedtask', urldecode($this->uri->segment(4)));
-		redirect('projects/edit/' . $this->uri->segment(5));
+		redirect('jobs/edit/' . $this->uri->segment(5));
 	}
 
 	// Authentication
