@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="<?=base_url()?>library/content/styles/main.css" type="text/css" media="all">
     <link rel="stylesheet" href="<?=base_url()?>library/content/styles/foundation-icons/foundation-icons.css" type="text/css" media="all">
     <link rel="stylesheet" href="<?=base_url()?>library/content/styles/vendor/sol.css" type="text/css" media="all">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="<?=base_url();?>library/scripts/sol.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

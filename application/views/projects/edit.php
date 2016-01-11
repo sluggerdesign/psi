@@ -171,7 +171,7 @@
 		<div class="row">
 	      <div class="small-5 columns">
 	        <label for="start">Start Date
-	          <input class="small-5" name="start" type="text" placeholder="Start Date">
+	          <input class="small-5" name="start" id="datepicker1" type="text" placeholder="Start Date">
 	        </label>
 	      </div>
 	  </div>
@@ -179,7 +179,7 @@
 		<div class="row">
 	      <div class="small-5 columns">
 	        <label for="end">End Date
-	          <input class="small-5" name="end" type="text" placeholder="End Date">
+	          <input class="small-5" name="end" id="datepicker2" type="text" placeholder="End Date">
 	        </label>
 	      </div>
 	  </div>
@@ -242,7 +242,7 @@
 		<div class="row">
 	      <div class="small-5 columns">
 	        <label for="start">Start Date
-	          <input class="small-5" name="start" id="start" type="text" placeholder="Start Date">
+	          <input class="small-5 datepicker3" name="start" id="start" type="text" placeholder="Start Date">
 	        </label>
 	      </div>
 	  </div>
@@ -250,7 +250,7 @@
 		<div class="row">
 	      <div class="small-5 columns">
 	        <label for="end">End Date
-	          <input class="small-5" name="end" id="end" type="text" placeholder="End Date">
+	          <input class="small-5 datepicker4" name="end" id="end" type="text" placeholder="End Date">
 	        </label>
 	      </div>
 	  </div>
@@ -305,5 +305,23 @@
 				$('#notes').val(field.notes);
 			});
 		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		$("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' });
+	});
+
+	$(function() {
+		$("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' });
+	});
+
+	$(function() {
+		$(".datepicker3").datepicker({ dateFormat: 'yy-mm-dd' });
+	});
+
+	$(function() {
+		$(".datepicker4").datepicker({ dateFormat: 'yy-mm-dd' });
 	});
 </script>
