@@ -48,18 +48,18 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-          <?php if(isset($projects)) : foreach($projects as $p) : ?>
+          <?php if(isset($jobs)) : foreach($jobs as $j) : ?>
   			    <tr>
-  			      <td><?=$p->name;?></td>
-              <td><?=$p->number;?></td>
+  			      <td><?=$j->name;?></td>
+              <td><?=$j->number;?></td>
               <?php foreach ($branches as $b) {
-                if ($b->id == $p->branch) {
+                if ($b->id == $j->branch) {
                   $branch = $b->name;
                 }
               } ?>
               <td><?=$branch;?></td>
-  			      <td><a href="/projects/edit/<?=$p->id;?>"><i class="fi-pencil"></i> Edit</a></td>
-  						<td><a href="/projects/delete/<?=$p->id;?>/<?=$p->name;?>"><i class="fi-x"></i> Delete</a></td>
+  			      <td><a href="/jobs/edit/<?=$j->id;?>"><i class="fi-pencil"></i> Edit</a></td>
+  						<td><a href="/jobs/delete/<?=$j->id;?>/<?=$j->name;?>"><i class="fi-x"></i> Delete</a></td>
   			    </tr>
           <?php endforeach; ?>
           <?php endif; ?>
@@ -70,6 +70,6 @@
 
 <div class="row">
 	<div class="small-12 columns">
-    <a href="/projects/create" class="button"><i class="fi-plus"></i> Add New</a>
+    <a href="/jobs/create" class="button"><i class="fi-plus"></i> Add New</a>
 	</div>
 </div>
