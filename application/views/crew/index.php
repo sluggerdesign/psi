@@ -40,7 +40,7 @@
 			<table class="hover">
 			  <thead>
 			    <tr>
-			      <th width="400">Crew Name</th>
+			      <th width="400">Crew Member</th>
 			      <th width="70"></th>
 			      <th width="90"></th>
 			    </tr>

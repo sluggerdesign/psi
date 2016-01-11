@@ -40,7 +40,7 @@
           <ul class="menu" data-responsive-menu="accordion">
             <li class="menu-text">PSI SCHEDULE</li>
             <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/projects">Projects</a></li>
+            <li><a href="/projects">Jobs</a></li>
             <li><a href="/branches">Branches</a></li>
             <li><a href="/crew">Crew</a></li>
             <li><a href="/tasks">Tasks</a></li>

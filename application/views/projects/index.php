@@ -3,7 +3,7 @@
 <div class="row">
   <div class="small-12 columns">
     <div class="callout success">
-      <p>You have successfully removed the <?=$this->session->flashdata('removed');?> project.</p>
+      <p>You have successfully removed the <?=$this->session->flashdata('removed');?> job.</p>
     </div>
   </div>
 </div>
@@ -13,7 +13,7 @@
 <div class="row">
   <div class="small-12 columns">
     <div class="callout success">
-      <p>You have successfully added the <?=$this->session->flashdata('added');?> project.</p>
+      <p>You have successfully added the <?=$this->session->flashdata('added');?> job.</p>
     </div>
   </div>
 </div>
@@ -23,7 +23,7 @@
 <div class="row">
   <div class="small-12 columns">
     <div class="callout success">
-      <p>You have successfully updated the <?=$this->session->flashdata('updated');?> project.</p>
+      <p>You have successfully updated the <?=$this->session->flashdata('updated');?> job.</p>
     </div>
   </div>
 </div>
@@ -31,7 +31,7 @@
 
 <div class="row">
 	<div class="small-12 columns">
-		<h3>Projects</h3>
+		<h3>Jobs</h3>
 	</div>
 </div>
 
@@ -40,8 +40,8 @@
 			<table class="hover">
 			  <thead>
 			    <tr>
-			      <th width="400">Project Name</th>
-            <th width="200">Project ID</th>
+			      <th width="400">Job Name</th>
+            <th width="200">Job Number</th>
             <th width="200">Branch</th>
 			      <th width="70"></th>
 			      <th width="90"></th>

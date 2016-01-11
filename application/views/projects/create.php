@@ -1,22 +1,22 @@
 <div class="row">
 	<div class="small-12 columns">
-		<h3>Add Project</h3>
+		<h3>Add Job</h3>
 	</div>
 </div>
 
 <?php echo form_open('projects/create');?>
   <div class="row">
       <div class="small-5 columns">
-        <label for="Project Name">Project Name
-          <input class="small-5 columns" name="name" id="name" type="text" placeholder="Project Name">
+        <label for="name">Job Name
+          <input class="small-5 columns" name="name" id="name" type="text" placeholder="Job Name">
         </label>
       </div>
   </div>
 
   <div class="row">
       <div class="small-5 columns">
-        <label for="Project ID">Project ID
-          <input class="small-5 columns" name="number" id="number" type="text" placeholder="Project ID">
+        <label for="number">Job Number
+          <input class="small-5 columns" name="number" id="number" type="text" placeholder="Job Number">
         </label>
       </div>
   </div>

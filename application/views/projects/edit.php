@@ -2,7 +2,7 @@
 <div class="row">
   <div class="small-12 columns">
     <div class="callout success">
-      <p>You have successfully added the <?=$this->session->flashdata('added');?> project. Now add some tasks below!</p>
+      <p>You have successfully added the <?=$this->session->flashdata('added');?> job. Now add some tasks below!</p>
     </div>
   </div>
 </div>
@@ -40,7 +40,7 @@
 
 <div class="row">
 	<div class="small-12 columns">
-		<h3>Update Project</h3>
+		<h3>Update Job</h3>
 	</div>
 </div>
 
@@ -49,8 +49,8 @@
   <?php echo form_open('projects/edit');?>
     <div class="row">
         <div class="small-5 columns">
-          <label for="Project Name">Project Name
-            <input class="small-5 columns" name="name" id="name" type="text" placeholder="Project Name" value="<?=$p->name;?>">
+          <label for="name">Job Name
+            <input class="small-5 columns" name="name" id="name" type="text" placeholder="Job Name" value="<?=$p->name;?>">
             <input name="id" id="id" type="hidden" value="<?=$p->id;?>">
           </label>
         </div>
@@ -58,15 +58,15 @@
 
     <div class="row">
         <div class="small-5 columns">
-          <label for="Project ID">Project ID
-            <input class="small-5 columns" name="number" id="number" type="text" placeholder="Project ID" value="<?=$p->number;?>">
+          <label for="number">Job Number
+            <input class="small-5 columns" name="number" id="number" type="text" placeholder="Job Number" value="<?=$p->number;?>">
           </label>
         </div>
     </div>
 
     <div class="row">
       <div class="small-5 columns">
-        <label for="Branch">Branch</label>
+        <label for="branch">Branch</label>
         <select name="branch" id="branch">
           <?php foreach ($branches as $b) {
             if ($b->id == $p->branch) {

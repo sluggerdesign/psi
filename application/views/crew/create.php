@@ -7,8 +7,8 @@
 <?php echo form_open('crew/create');?>
   <div class="row">
       <div class="small-5 columns">
-        <label for="Crew Name">Crew Name
-          <input class="small-5 columns" name="name" id="name" type="text" placeholder="Crew Name">
+        <label for="name">Crew Member Name
+          <input class="small-5 columns" name="name" id="name" type="text" placeholder="Crew Member Name">
         </label>
       </div>
   </div>
