@@ -5,10 +5,10 @@ class Users extends CI_Controller {
 
 	public function index() {
 		$this->authorize();
-		$this->load->model('usersModel');
+		$this->load->model('Usersmodel');
 
 		$data['title'] = "Users | Petroleum Solutions Project Management";
-		$data['users'] = $this->usersModel->getRecords();
+		$data['users'] = $this->Usersmodel->getRecords();
 
 		$this->load->view('header', $data);
 		$this->load->view('users/index');
@@ -17,7 +17,7 @@ class Users extends CI_Controller {
 
 	public function create() {
 		$this->authorize();
-		$this->load->model('usersModel');
+		$this->load->model('Usersmodel');
 
 		if($_POST) {
 			$name = $this->sanitize->trimFirstCaps($this->input->post('name'));
@@ -30,7 +30,7 @@ class Users extends CI_Controller {
 				'password' => $password
 			);
 
-			$this->usersModel->create($data);
+			$this->Usersmodel->create($data);
 
 			$this->session->set_flashdata('added', $name);
 			redirect('users/index');
@@ -45,9 +45,9 @@ class Users extends CI_Controller {
 
 	public function edit() {
 		$this->authorize();
-		$this->load->model('usersModel');
+		$this->load->model('Usersmodel');
 
-		$data['users'] = $this->usersModel->getRecord($this->uri->segment(3));
+		$data['users'] = $this->Usersmodel->getRecord($this->uri->segment(3));
 
 		if($_POST) {
 			$id = $this->input->post('id');
@@ -61,7 +61,7 @@ class Users extends CI_Controller {
 				'password' => $password
 			);
 
-			$this->usersModel->update($data, $id);
+			$this->Usersmodel->update($data, $id);
 
 			$this->session->set_flashdata('updated', $name);
 			redirect('users/index');
@@ -76,9 +76,9 @@ class Users extends CI_Controller {
 
 	public function delete() {
 		$this->authorize();
-		$this->load->model('usersModel');
+		$this->load->model('Usersmodel');
 
-		$this->usersModel->delete($this->uri->segment(3));
+		$this->Usersmodel->delete($this->uri->segment(3));
 
 		$this->session->set_flashdata('removed', urldecode($this->uri->segment(4)));
 		redirect('users/index');

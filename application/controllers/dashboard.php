@@ -5,9 +5,14 @@ class Dashboard extends CI_Controller {
 
 	public function index() {
 		$this->authorize();
-		//$this->load->model('dashboard');
+		$this->load->model('Branchesmodel');
+		$this->load->model('Projectsmodel');
+		$this->load->model('Workmodel');
 
 		$data['title'] = "Dashboard | Petroleum Solutions Project Management";
+		$data['branches'] = $this->Branchesmodel->getRecords();
+		$data['projects'] = $this->Projectsmodel->getRecords();
+		$data['work'] = $this->Workmodel->getAllRecords();
 
 		$this->load->view('header', $data);
 		$this->load->view('dashboard');

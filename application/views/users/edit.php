@@ -9,7 +9,7 @@
   <?php echo form_open('users/edit');?>
     <div class="row">
         <div class="small-5 columns">
-          <label for="Project Name">Name (First Last)
+          <label for="name">Name (First Last)
             <input class="small-5 columns" name="name" id="name" type="text" placeholder="Name (First Last)" value="<?=$u->name;?>">
             <input name="id" id="id" type="hidden" value="<?=$u->id;?>">
           </label>

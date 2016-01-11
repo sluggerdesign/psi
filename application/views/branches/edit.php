@@ -9,7 +9,7 @@
   <?php echo form_open('branches/edit');?>
     <div class="row">
         <div class="small-5 columns">
-          <label for="Branch Name">Branch Name
+          <label for="name">Branch Name
             <input class="small-5 columns" name="name" id="name" type="text" placeholder="Branch Name" value="<?=$b->name;?>">
             <input name="id" id="id" type="hidden" value="<?=$b->id;?>">
           </label>

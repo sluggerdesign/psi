@@ -5,13 +5,13 @@ class Projects extends CI_Controller {
 
 	public function index() {
 		$this->authorize();
-		$this->load->model('projectsModel');
-		$this->load->model('branchesModel');
+		$this->load->model('Projectsmodel');
+		$this->load->model('Branchesmodel');
 
-		$data['branches'] = $this->branchesModel->getRecords();
+		$data['branches'] = $this->Branchesmodel->getRecords();
 
 		$data['title'] = "Projects | Petroleum Solutions Project Management";
-		$data['projects'] = $this->projectsModel->getRecords();
+		$data['projects'] = $this->Projectsmodel->getRecords();
 
 		$this->load->view('header', $data);
 		$this->load->view('projects/index');
@@ -20,10 +20,10 @@ class Projects extends CI_Controller {
 
 	public function create() {
 		$this->authorize();
-		$this->load->model('projectsModel');
-		$this->load->model('branchesModel');
+		$this->load->model('Projectsmodel');
+		$this->load->model('Branchesmodel');
 
-		$data['branches'] = $this->branchesModel->getRecords();
+		$data['branches'] = $this->Branchesmodel->getRecords();
 
 		if($_POST) {
 			$name = $this->sanitize->trimFirstCaps($this->input->post('name'));
@@ -36,7 +36,7 @@ class Projects extends CI_Controller {
 				'branch' => $branch
 			);
 
-			$this->projectsModel->create($data);
+			$this->Projectsmodel->create($data);
 			$postid = $this->db->insert_id();
 
 			$this->session->set_flashdata('added', $name);
@@ -52,17 +52,17 @@ class Projects extends CI_Controller {
 
 	public function edit() {
 		$this->authorize();
-		$this->load->model('projectsModel');
-		$this->load->model('branchesModel');
-		$this->load->model('workModel');
-		$this->load->model('tasksModel');
-		$this->load->model('crewModel');
+		$this->load->model('Projectsmodel');
+		$this->load->model('Branchesmodel');
+		$this->load->model('Workmodel');
+		$this->load->model('Taskmodel');
+		$this->load->model('Crewmodel');
 
-		$data['branches'] = $this->branchesModel->getRecords();
-		$data['projects'] = $this->projectsModel->getRecord($this->uri->segment(3));
-		$data['work'] = $this->workModel->getRecords($this->uri->segment(3));
-		$data['tasks'] = $this->tasksModel->getRecords();
-		$data['crew'] = $this->crewModel->getRecords();
+		$data['branches'] = $this->Branchesmodel->getRecords();
+		$data['projects'] = $this->Projectsmodel->getRecord($this->uri->segment(3));
+		$data['work'] = $this->Workmodel->getRecords($this->uri->segment(3));
+		$data['tasks'] = $this->Taskmodel->getRecords();
+		$data['crew'] = $this->Crewmodel->getRecords();
 
 		if($_POST) {
 			$id = $this->input->post('id');
@@ -76,7 +76,7 @@ class Projects extends CI_Controller {
 				'branch' => $branch
 			);
 
-			$this->projectsModel->update($data, $id);
+			$this->Projectsmodel->update($data, $id);
 
 			$this->session->set_flashdata('updated', $name);
 			redirect('projects/index');
@@ -91,9 +91,9 @@ class Projects extends CI_Controller {
 
 	public function delete() {
 		$this->authorize();
-		$this->load->model('projectsModel');
+		$this->load->model('Projectsmodel');
 
-		$this->projectsModel->delete($this->uri->segment(3));
+		$this->Projectsmodel->delete($this->uri->segment(3));
 
 		$this->session->set_flashdata('removed', urldecode($this->uri->segment(4)));
 		redirect('projects/index');

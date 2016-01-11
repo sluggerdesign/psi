@@ -1,6 +1,6 @@
 <?php
 
-class crewModel extends CI_Model {
+class Crewmodel extends CI_Model {
 
 	function getAffectedRows()
 	{
@@ -21,7 +21,7 @@ class crewModel extends CI_Model {
 
   function getRecords()
 	{
-		$this->db->order_by("name", "asc"); 
+		$this->db->order_by("name", "asc");
 		$q = $this->db->get('crew');
 
 		if($q->num_rows() > 0){

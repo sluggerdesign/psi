@@ -5,7 +5,7 @@ class Work extends CI_Controller {
 
 	public function create() {
 		$this->authorize();
-		$this->load->model('workModel');
+		$this->load->model('Workmodel');
 
 		if($_POST) {
 			$project = $this->input->post('id');
@@ -17,7 +17,7 @@ class Work extends CI_Controller {
 
 			if ($crew) {
 				$crew = implode(', ', $crew);
-			}	
+			}
 
 			$data = array(
 				'project' => $project,
@@ -28,7 +28,7 @@ class Work extends CI_Controller {
 				'end' => $end
 			);
 
-			$this->workModel->create($data);
+			$this->Workmodel->create($data);
 
 			$this->session->set_flashdata('addedtask', $task);
 			redirect('projects/edit/' . $project);
@@ -37,7 +37,7 @@ class Work extends CI_Controller {
 
 	public function edit() {
 		$this->authorize();
-		$this->load->model('workModel');
+		$this->load->model('Workmodel');
 
 		$id = $this->uri->segment(3);
 
@@ -62,23 +62,23 @@ class Work extends CI_Controller {
 				'end' => $end
 			);
 
-			$this->workModel->update($data, $id);
+			$this->Workmodel->update($data, $id);
 
 			$this->session->set_flashdata('updatedtask', $task);
 			redirect('projects/edit/' . $project);
 		}
 
 		$id = $this->uri->segment(3);
-		$data['task'] = $this->workModel->getRecord($id);
+		$data['task'] = $this->Workmodel->getRecord($id);
 
 		echo json_encode($data['task']);
 	}
 
 	public function delete() {
 		$this->authorize();
-		$this->load->model('workModel');
+		$this->load->model('Workmodel');
 
-		$this->workModel->delete($this->uri->segment(3));
+		$this->Workmodel->delete($this->uri->segment(3));
 
 		$this->session->set_flashdata('removedtask', urldecode($this->uri->segment(4)));
 		redirect('projects/edit/' . $this->uri->segment(5));

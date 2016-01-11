@@ -5,10 +5,10 @@ class Crew extends CI_Controller {
 
 	public function index() {
 		$this->authorize();
-		$this->load->model('crewModel');
+		$this->load->model('Crewmodel');
 
 		$data['title'] = "Tasks | Petroleum Solutions Project Management";
-		$data['crew'] = $this->crewModel->getRecords();
+		$data['crew'] = $this->Crewmodel->getRecords();
 
 		$this->load->view('header', $data);
 		$this->load->view('crew/index');
@@ -17,7 +17,7 @@ class Crew extends CI_Controller {
 
 	public function create() {
 		$this->authorize();
-		$this->load->model('crewModel');
+		$this->load->model('Crewmodel');
 
 		if($_POST) {
 			$name = $this->sanitize->trimFirstCaps($this->input->post('name'));
@@ -26,7 +26,7 @@ class Crew extends CI_Controller {
 				'name' => $name
 			);
 
-			$this->crewModel->create($data);
+			$this->Crewmodel->create($data);
 
 			$this->session->set_flashdata('added', $name);
 			redirect('crew/index');
@@ -41,9 +41,9 @@ class Crew extends CI_Controller {
 
 	public function edit() {
 		$this->authorize();
-		$this->load->model('crewModel');
+		$this->load->model('Crewmodel');
 
-		$data['crew'] = $this->crewModel->getRecord($this->uri->segment(3));
+		$data['crew'] = $this->Crewmodel->getRecord($this->uri->segment(3));
 
 		if($_POST) {
 			$id = $this->input->post('id');
@@ -53,7 +53,7 @@ class Crew extends CI_Controller {
 				'name' => $name
 			);
 
-			$this->crewModel->update($data, $id);
+			$this->Crewmodel->update($data, $id);
 
 			$this->session->set_flashdata('updated', $name);
 			redirect('crew/index');
@@ -68,9 +68,9 @@ class Crew extends CI_Controller {
 
 	public function delete() {
 		$this->authorize();
-		$this->load->model('crewModel');
+		$this->load->model('Crewmodel');
 
-		$this->crewModel->delete($this->uri->segment(3));
+		$this->Crewmodel->delete($this->uri->segment(3));
 
 		$this->session->set_flashdata('removed', urldecode($this->uri->segment(4)));
 		redirect('crew/index');

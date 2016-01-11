@@ -5,10 +5,10 @@ class Branches extends CI_Controller {
 
 	public function index() {
 		$this->authorize();
-		$this->load->model('branchesModel');
+		$this->load->model('Branchesmodel');
 
 		$data['title'] = "Branches | Petroleum Solutions Project Management";
-		$data['branches'] = $this->branchesModel->getRecords();
+		$data['branches'] = $this->Branchesmodel->getRecords();
 
 		$this->load->view('header', $data);
 		$this->load->view('branches/index');
@@ -17,7 +17,7 @@ class Branches extends CI_Controller {
 
 	public function create() {
 		$this->authorize();
-		$this->load->model('branchesModel');
+		$this->load->model('Branchesmodel');
 
 		if($_POST) {
 			$name = $this->sanitize->trimFirstCaps($this->input->post('name'));
@@ -26,7 +26,7 @@ class Branches extends CI_Controller {
 				'name' => $name
 			);
 
-			$this->branchesModel->create($data);
+			$this->Branchesmodel->create($data);
 
 			$this->session->set_flashdata('added', $name);
 			redirect('branches/index');
@@ -41,9 +41,9 @@ class Branches extends CI_Controller {
 
 	public function edit() {
 		$this->authorize();
-		$this->load->model('branchesModel');
+		$this->load->model('Branchesmodel');
 
-		$data['branch'] = $this->branchesModel->getRecord($this->uri->segment(3));
+		$data['branch'] = $this->Branchesmodel->getRecord($this->uri->segment(3));
 
 		if($_POST) {
 			$id = $this->input->post('id');
@@ -53,7 +53,7 @@ class Branches extends CI_Controller {
 				'name' => $name
 			);
 
-			$this->branchesModel->update($data, $id);
+			$this->Branchesmodel->update($data, $id);
 
 			$this->session->set_flashdata('updated', $name);
 			redirect('branches/index');
@@ -68,9 +68,9 @@ class Branches extends CI_Controller {
 
 	public function delete() {
 		$this->authorize();
-		$this->load->model('branchesModel');
+		$this->load->model('Branchesmodel');
 
-		$this->branchesModel->delete($this->uri->segment(3));
+		$this->Branchesmodel->delete($this->uri->segment(3));
 
 		$this->session->set_flashdata('removed', urldecode($this->uri->segment(4)));
 		redirect('branches/index');

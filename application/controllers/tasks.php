@@ -5,10 +5,10 @@ class Tasks extends CI_Controller {
 
 	public function index() {
 		$this->authorize();
-		$this->load->model('tasksModel');
+		$this->load->model('Tasksmodel');
 
 		$data['title'] = "Tasks | Petroleum Solutions Project Management";
-		$data['tasks'] = $this->tasksModel->getRecords();
+		$data['tasks'] = $this->Tasksmodel->getRecords();
 
 		$this->load->view('header', $data);
 		$this->load->view('tasks/index');
@@ -17,7 +17,7 @@ class Tasks extends CI_Controller {
 
 	public function create() {
 		$this->authorize();
-		$this->load->model('tasksModel');
+		$this->load->model('Tasksmodel');
 
 		if($_POST) {
 			$name = $this->sanitize->trimFirstCaps($this->input->post('name'));
@@ -26,7 +26,7 @@ class Tasks extends CI_Controller {
 				'name' => $name
 			);
 
-			$this->tasksModel->create($data);
+			$this->Tasksmodel->create($data);
 
 			$this->session->set_flashdata('added', $name);
 			redirect('tasks/index');
@@ -41,9 +41,9 @@ class Tasks extends CI_Controller {
 
 	public function edit() {
 		$this->authorize();
-		$this->load->model('tasksModel');
+		$this->load->model('Tasksmodel');
 
-		$data['task'] = $this->tasksModel->getRecord($this->uri->segment(3));
+		$data['task'] = $this->Tasksmodel->getRecord($this->uri->segment(3));
 
 		if($_POST) {
 			$id = $this->input->post('id');
@@ -53,7 +53,7 @@ class Tasks extends CI_Controller {
 				'name' => $name
 			);
 
-			$this->tasksModel->update($data, $id);
+			$this->Tasksmodel->update($data, $id);
 
 			$this->session->set_flashdata('updated', $name);
 			redirect('tasks/index');
@@ -68,9 +68,9 @@ class Tasks extends CI_Controller {
 
 	public function delete() {
 		$this->authorize();
-		$this->load->model('tasksModel');
+		$this->load->model('Tasksmodel');
 
-		$this->tasksModel->delete($this->uri->segment(3));
+		$this->Tasksmodel->delete($this->uri->segment(3));
 
 		$this->session->set_flashdata('removed', urldecode($this->uri->segment(4)));
 		redirect('tasks/index');

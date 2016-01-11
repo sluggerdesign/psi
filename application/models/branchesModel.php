@@ -1,6 +1,6 @@
 <?php
 
-class BranchesModel extends CI_Model {
+class Branchesmodel extends CI_Model {
 
 	function getAffectedRows()
 	{

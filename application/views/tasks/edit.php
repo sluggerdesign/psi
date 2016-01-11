@@ -9,7 +9,7 @@
   <?php echo form_open('tasks/edit');?>
     <div class="row">
         <div class="small-5 columns">
-          <label for="Task Name">Task Name
+          <label for="name">Task Name
             <input class="small-5 columns" name="name" id="name" type="text" placeholder="Task Name" value="<?=$t->name;?>">
             <input name="id" id="id" type="hidden" value="<?=$t->id;?>">
           </label>

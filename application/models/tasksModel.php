@@ -1,6 +1,6 @@
 <?php
 
-class tasksModel extends CI_Model {
+class Tasksmodel extends CI_Model {
 
 	function getAffectedRows()
 	{
@@ -21,7 +21,7 @@ class tasksModel extends CI_Model {
 
   function getRecords()
 	{
-		$this->db->order_by("name", "asc"); 
+		$this->db->order_by("name", "asc");
 		$q = $this->db->get('tasks');
 
 		if($q->num_rows() > 0){

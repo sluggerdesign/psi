@@ -1,6 +1,6 @@
 <?php
 
-class workModel extends CI_Model {
+class Workmodel extends CI_Model {
 
 	function getAffectedRows()
 	{
@@ -23,6 +23,19 @@ class workModel extends CI_Model {
 	{
 		$this->db->order_by("start", "asc");
 		$this->db->where('project', $id);
+		$q = $this->db->get('work');
+
+		if($q->num_rows() > 0){
+				foreach($q->result() as $row) {
+					$data[] =$row;
+			}
+			return $data;
+			}
+	}
+
+	function getAllRecords()
+	{
+		$this->db->order_by("start", "asc");
 		$q = $this->db->get('work');
 
 		if($q->num_rows() > 0){
