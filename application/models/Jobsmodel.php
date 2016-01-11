@@ -1,6 +1,6 @@
 <?php
 
-class Projectsmodel extends CI_Model {
+class Jobsmodel extends CI_Model {
 
 	function getAffectedRows()
 	{

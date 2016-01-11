@@ -4,7 +4,7 @@
 	</div>
 </div>
 
-<?php echo form_open('projects/create');?>
+<?php echo form_open('jobs/create');?>
   <div class="row">
       <div class="small-5 columns">
         <label for="name">Job Name

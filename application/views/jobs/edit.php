@@ -44,14 +44,14 @@
 	</div>
 </div>
 
-<?php if(isset($projects)) : foreach($projects as $p) : ?>
+<?php if(isset($jobs)) : foreach($jobs as $j) : ?>
 
-  <?php echo form_open('projects/edit');?>
+  <?php echo form_open('jobs/edit');?>
     <div class="row">
         <div class="small-5 columns">
           <label for="name">Job Name
-            <input class="small-5 columns" name="name" id="name" type="text" placeholder="Job Name" value="<?=$p->name;?>">
-            <input name="id" id="id" type="hidden" value="<?=$p->id;?>">
+            <input class="small-5 columns" name="name" id="name" type="text" placeholder="Job Name" value="<?=$j->name;?>">
+            <input name="id" id="id" type="hidden" value="<?=$j->id;?>">
           </label>
         </div>
     </div>
@@ -59,7 +59,7 @@
     <div class="row">
         <div class="small-5 columns">
           <label for="number">Job Number
-            <input class="small-5 columns" name="number" id="number" type="text" placeholder="Job Number" value="<?=$p->number;?>">
+            <input class="small-5 columns" name="number" id="number" type="text" placeholder="Job Number" value="<?=$j->number;?>">
           </label>
         </div>
     </div>
@@ -69,11 +69,11 @@
         <label for="branch">Branch</label>
         <select name="branch" id="branch">
           <?php foreach ($branches as $b) {
-            if ($b->id == $p->branch) {
+            if ($b->id == $j->branch) {
               $branch = $b->name;
             }
           } ?>
-          <option value="<?=$p->branch;?>"><?=$branch;?></option>
+          <option value="<?=$j->branch;?>"><?=$branch;?></option>
           <?php if(isset($branches)) : foreach($branches as $b) : ?>
             <option value="<?=$b->id;?>"><?=$b->name;?></option>
           <?php endforeach; ?>
@@ -121,8 +121,8 @@
               <td><?=$w->crew;?></td>
               <td><?=$w->start;?></td>
 							<td><?=$w->end;?></td>
-  			      <td><a data-open="edittaskModal" data-id="<?=$w->id;?>" data-pid="<?=$p->id;?>" class="edit"><i class="fi-pencil"></i> Edit</a></td>
-  						<td><a href="/work/delete/<?=$w->id;?>/<?=$w->task;?>/<?=$p->id;?>"><i class="fi-x"></i> Delete</a></td>
+  			      <td><a data-open="edittaskModal" data-id="<?=$w->id;?>" data-pid="<?=$j->id;?>" class="edit"><i class="fi-pencil"></i> Edit</a></td>
+  						<td><a href="/work/delete/<?=$w->id;?>/<?=$w->task;?>/<?=$j->id;?>"><i class="fi-x"></i> Delete</a></td>
   			    </tr>
           <?php endforeach; ?>
           <?php endif; ?>
@@ -191,7 +191,7 @@
 	      </div>
 	  </div>
 
-		<input name="id" id="id" type="hidden" value="<?=$p->id;?>">
+		<input name="id" id="id" type="hidden" value="<?=$j->id;?>">
 
 	  <div class="row">
 	    <div class="small-12 columns">
@@ -262,7 +262,7 @@
 	      </div>
 	  </div>
 
-		<input name="id" id="id" type="hidden" value="<?=$p->id;?>">
+		<input name="id" id="id" type="hidden" value="<?=$j->id;?>">
 
 	  <div class="row">
 	    <div class="small-12 columns">
