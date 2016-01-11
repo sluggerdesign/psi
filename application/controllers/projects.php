@@ -37,9 +37,10 @@ class Projects extends CI_Controller {
 			);
 
 			$this->projectsModel->create($data);
+			$postid = $this->db->insert_id();
 
 			$this->session->set_flashdata('added', $name);
-			redirect('projects/index');
+			redirect('projects/edit/' . $postid);
 		}
 
 		$data['title'] = "Add Project | Petroleum Solutions Project Management";
@@ -53,9 +54,15 @@ class Projects extends CI_Controller {
 		$this->authorize();
 		$this->load->model('projectsModel');
 		$this->load->model('branchesModel');
+		$this->load->model('workModel');
+		$this->load->model('tasksModel');
+		$this->load->model('crewModel');
 
 		$data['branches'] = $this->branchesModel->getRecords();
 		$data['projects'] = $this->projectsModel->getRecord($this->uri->segment(3));
+		$data['work'] = $this->workModel->getRecords($this->uri->segment(3));
+		$data['tasks'] = $this->tasksModel->getRecords();
+		$data['crew'] = $this->crewModel->getRecords();
 
 		if($_POST) {
 			$id = $this->input->post('id');
