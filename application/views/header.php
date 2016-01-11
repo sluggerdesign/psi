@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <link rel="icon" href="">
 
-    <title></title>
+    <title><?=$title;?></title>
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="<?=base_url()?>library/content/styles/foundation.css" type="text/css" media="all">

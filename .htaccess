@@ -10,6 +10,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L,QSA]
 
 RewriteCond %{HTTP_HOST} ^www [NC]
-RewriteRule ^(.*)$ http://psiproject.com/$1 [L,R=301]
+RewriteRule ^(.*)$ http://psischedule.com/$1 [L,R=301]
 
 php_value date.timezone 'America/Chicago'
