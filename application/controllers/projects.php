@@ -55,13 +55,13 @@ class Projects extends CI_Controller {
 		$this->load->model('Projectsmodel');
 		$this->load->model('Branchesmodel');
 		$this->load->model('Workmodel');
-		$this->load->model('Taskmodel');
+		$this->load->model('Tasksmodel');
 		$this->load->model('Crewmodel');
 
 		$data['branches'] = $this->Branchesmodel->getRecords();
 		$data['projects'] = $this->Projectsmodel->getRecord($this->uri->segment(3));
 		$data['work'] = $this->Workmodel->getRecords($this->uri->segment(3));
-		$data['tasks'] = $this->Taskmodel->getRecords();
+		$data['tasks'] = $this->Tasksmodel->getRecords();
 		$data['crew'] = $this->Crewmodel->getRecords();
 
 		if($_POST) {
