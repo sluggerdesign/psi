@@ -9,7 +9,7 @@ class Jobsmodel extends CI_Model {
 
 	function getRecord($id) {
 		$this->db->where('id', $id);
-		$q = $this->db->get('projects');
+		$q = $this->db->get('jobs');
 
 		if($q->num_rows() > 0) {
 			foreach ($q->result() as $row) {
@@ -21,7 +21,7 @@ class Jobsmodel extends CI_Model {
 
   function getRecords()
 	{
-		$q = $this->db->get('projects');
+		$q = $this->db->get('jobs');
 
 		if($q->num_rows() > 0){
 				foreach($q->result() as $row) {
@@ -33,20 +33,20 @@ class Jobsmodel extends CI_Model {
 
 	function create($data)
 	{
-		$this->db->insert('projects', $data);
+		$this->db->insert('jobs', $data);
 		return;
 	}
 
 	function update($data, $id)
 	{
 		$this->db->where('id', $id);
-		$this->db->update('projects', $data);
+		$this->db->update('jobs', $data);
 		return;
 	}
 
 	function delete($id)
 	{
 		$this->db->where('id', $id);
-		$this->db->delete('projects');
+		$this->db->delete('jobs');
 	}
 }
