@@ -10,9 +10,25 @@ class Dashboard extends CI_Controller {
 		$this->load->model('Workmodel');
 
 		$data['title'] = "Dashboard | Petroleum Solutions Project Management";
-		$data['branches'] = $this->Branchesmodel->getRecords();
+		$data['allbranches'] = $this->Branchesmodel->getRecords();
 		$data['jobs'] = $this->Jobsmodel->getRecords();
 		$data['work'] = $this->Workmodel->getAllRecords();
+
+		if ($data['allbranches']) {
+			$data['branches'] = array();
+			foreach ($data['allbranches'] as $b) {
+				foreach ($data['jobs'] as $j) {
+					if ($j->branch == $b->id) {
+						$o = new stdClass;
+    				$o->id=$b->id;
+    				$o->name=$b->name;
+						array_push($data['branches'], $o);
+					}
+				}
+			}
+			//$data['branches'] = array_unique($data['branches']);
+			sort($data['branches']);
+		}
 
 		$this->load->view('header', $data);
 		$this->load->view('dashboard');
