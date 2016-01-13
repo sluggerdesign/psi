@@ -50,8 +50,12 @@
 									<tr height="100">
 						      	<td><a data-open="edittaskModal" data-id="<?=$w->id;?>" data-jid="<?=$j->id;?>" class="edit"><?=$w->task;?></a></td> <!-- Task Name -->
 					          <?php
+                                    $WorkDateRange = createDateRangeArray($w->start, $w->end);
 					         		for ( $x = 0; $x < 7; $x++ )
-					            echo "<td align='center'>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
+                                    if (in_array(date( "Y-m-d", mktime( 0, 0, 0, $month, $day_start + $x, $year)), $WorkDateRange)) 
+                                        echo "<td align='center' style='background: turquoise'>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
+                                    else
+                                        echo "<td align='center'>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
 					          ?>
 						      </tr>
 								<?php endif; ?>
@@ -117,6 +121,33 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+
+<?php
+function createDateRangeArray($strDateFrom,$strDateTo)
+{
+    // takes two dates formatted as YYYY-MM-DD and creates an
+    // inclusive array of the dates between the from and to dates.
+
+    // could test validity of dates here but I'm already doing
+    // that in the main script
+
+    $aryRange=array();
+
+    $iDateFrom=mktime(1,0,0,substr($strDateFrom,5,2),     substr($strDateFrom,8,2),substr($strDateFrom,0,4));
+    $iDateTo=mktime(1,0,0,substr($strDateTo,5,2),     substr($strDateTo,8,2),substr($strDateTo,0,4));
+
+    if ($iDateTo>=$iDateFrom)
+    {
+        array_push($aryRange,date('Y-m-d',$iDateFrom)); // first entry
+        while ($iDateFrom<$iDateTo)
+        {
+            $iDateFrom+=86400; // add 24 hours
+            array_push($aryRange,date('Y-m-d',$iDateFrom));
+        }
+    }
+    return $aryRange;
+}
+?>
 
 <!-- END VIEW TASK MODAL -->
 
