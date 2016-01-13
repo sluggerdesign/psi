@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="<?=base_url()?>library/content/styles/dashboard.css" type="text/css">
 <div class="row dashboard-module">
 	<div class="small-12 columns">
 		<h3>Dashboard</h3>
-      <?php
+
+			<?php
         $dt = new DateTime;
         if (isset($_GET['year']) && isset($_GET['week'])) {
           $dt->setISODate($_GET['year'], $_GET['week']);
@@ -24,6 +24,7 @@
         $day_start = date("d", $time);
         $daysOfWeek = array('SU','MO','TU','WE','TH','FR','SA');
      ?>
+
 		  <div class="row">
 				<div class="small-12 columns text-center">
 					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($nav_week-1).'&year='.$nav_year; ?>"><i class="fi-arrow-left"></i>&nbsp;</a> <!--Previous week-->
@@ -41,25 +42,30 @@
 						<table class="dashboard-table">
 			        <tr>
 			          <th width="300" align="left"><?=$j->name;?> - <?=$j->number;?></th> <!-- Job Name and Number -->
-			          <?php
+
+								<?php
 			         		for ( $x = 0; $x < 7; $x++ )
 			            echo "<th width='120'>".$daysOfWeek[$x]. "</th>";
 			          ?>
+
 			        </tr>
+
 							<?php if(isset($work)) : foreach($work as $w) : ?> <!-- Looping through work tasks -->
 								<?php if ($j->id == $w->project) : ?> <!-- If task id matches job id then display table riw below with task data -->
 									<tr height="100">
 						      	<td><a data-open="edittaskModal" data-id="<?=$w->id;?>" data-jid="<?=$j->id;?>" class="edit"><?=$w->task;?></a></td> <!-- Task Name -->
-					          <?php
-                                    $WorkDateRange = createDateRangeArray($w->start, $w->end);
-                                    $crewCollection = explode(',', $w->crew);
-					         		for ( $x = 0; $x < 7; $x++ )
-                                     
-                                    if (in_array(date( "Y-m-d", mktime( 0, 0, 0, $month, $day_start + $x, $year)), $WorkDateRange)) 
-                                        echo "<td align='center' class='selected-date'><a data-open='edittaskModal' data-id=".$w->id." data-jid=".$j->id." class='edit'><span>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</span><span class='crew-count'>".count($crewCollection)."</span></a></td>";
-                                    else
-                                        echo "<td align='center'>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
+
+										<?php
+	                    $WorkDateRange = createDateRangeArray($w->start, $w->end);
+	                    $crewCollection = explode(',', $w->crew);
+
+											for ( $x = 0; $x < 7; $x++ )
+                      if (in_array(date( "Y-m-d", mktime( 0, 0, 0, $month, $day_start + $x, $year)), $WorkDateRange))
+                      	echo "<td align='center' class='selected-date'><a data-open='edittaskModal' data-id=".$w->id." data-jid=".$j->id." class='edit'><span>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</span><span class='crew-count'>".count($crewCollection)."</span></a></td>";
+                      else
+                      	echo "<td align='center'>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
 					          ?>
+
 						      </tr>
 								<?php endif; ?>
 							<?php endforeach; ?>
@@ -125,9 +131,12 @@
   </button>
 </div>
 
+<!-- END VIEW TASK MODAL -->
+
+<!-- BEGIN CREATE DATE RANGE ARRAY -->
+
 <?php
-function createDateRangeArray($strDateFrom,$strDateTo)
-{
+function createDateRangeArray($strDateFrom,$strDateTo) {
     // takes two dates formatted as YYYY-MM-DD and creates an
     // inclusive array of the dates between the from and to dates.
 
@@ -136,23 +145,23 @@ function createDateRangeArray($strDateFrom,$strDateTo)
 
     $aryRange=array();
 
-    $iDateFrom=mktime(1,0,0,substr($strDateFrom,5,2),     substr($strDateFrom,8,2),substr($strDateFrom,0,4));
-    $iDateTo=mktime(1,0,0,substr($strDateTo,5,2),     substr($strDateTo,8,2),substr($strDateTo,0,4));
+    $iDateFrom=mktime(1,0,0,substr($strDateFrom,5,2), substr($strDateFrom,8,2),substr($strDateFrom,0,4));
+    $iDateTo=mktime(1,0,0,substr($strDateTo,5,2), substr($strDateTo,8,2),substr($strDateTo,0,4));
 
     if ($iDateTo>=$iDateFrom)
     {
-        array_push($aryRange,date('Y-m-d',$iDateFrom)); // first entry
-        while ($iDateFrom<$iDateTo)
-        {
-            $iDateFrom+=86400; // add 24 hours
-            array_push($aryRange,date('Y-m-d',$iDateFrom));
-        }
+	    array_push($aryRange,date('Y-m-d',$iDateFrom)); // first entry
+	    while ($iDateFrom<$iDateTo)
+	    {
+	      $iDateFrom+=86400; // add 24 hours
+	      array_push($aryRange,date('Y-m-d',$iDateFrom));
+	    }
     }
     return $aryRange;
 }
 ?>
 
-<!-- END VIEW TASK MODAL -->
+<!-- END CREATE DATE RANGE ARRAY -->
 
 <!-- Retrieve Task Data -->
 
