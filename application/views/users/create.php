@@ -4,7 +4,8 @@
 	</div>
 </div>
 
-<?php echo form_open('users/create');?>
+<?php $attributes = array('id' => 'create-user'); ?>
+<?php echo form_open('users/create', $attributes);?>
   <div class="row">
       <div class="small-5 columns">
         <label for="name">Name (First Last)

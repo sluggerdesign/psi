@@ -4,7 +4,8 @@
 	</div>
 </div>
 
-<?php echo form_open('branches/create');?>
+<?php $attributes = array('id' => 'create-branch'); ?>
+<?php echo form_open('branches/create', $attributes);?>
   <div class="row">
       <div class="small-5 columns">
         <label for="name">Branch Name

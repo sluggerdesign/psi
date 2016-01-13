@@ -21,6 +21,7 @@ class Jobsmodel extends CI_Model {
 
   function getRecords()
 	{
+		$this->db->order_by("timestamp", "asc");
 		$q = $this->db->get('jobs');
 
 		if($q->num_rows() > 0){

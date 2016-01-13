@@ -38,6 +38,7 @@ class Work extends CI_Controller {
 	public function edit() {
 		$this->authorize();
 		$this->load->model('Workmodel');
+		$this->load->model('Jobsmodel');
 
 		$id = $this->uri->segment(3);
 

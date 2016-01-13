@@ -33,7 +33,7 @@
 
 			<?php if(isset($branches)) : foreach($branches as $b) : ?> <!-- Looping through branches made available from controller -->
 
-				<h4 style="margin: 20px 0 20px 5px; color: #2199e8;"><?=$b->name;?></h4> <!-- Branch Name -->
+				<h4 style="margin: 20px 0 20px 5px;"><?=$b->name;?></h4> <!-- Branch Name -->
 
 				<?php if(isset($jobs)) : foreach($jobs as $j) : ?> <!-- Looping through jobs -->
 					<?php if ($j->branch == $b->id) : ?> <!-- If branch id matches job id then display table below with job name -->
@@ -48,7 +48,7 @@
 							<?php if(isset($work)) : foreach($work as $w) : ?> <!-- Looping through work tasks -->
 								<?php if ($j->id == $w->project) : ?> <!-- If task id matches job id then display table riw below with task data -->
 									<tr height="100">
-						      	<td><a data-open="edittaskModal" data-id="<?=$w->id;?>" data-pid="<?=$j->id;?>" class="edit"><?=$w->task;?></a></td> <!-- Task Name -->
+						      	<td><a data-open="edittaskModal" data-id="<?=$w->id;?>" data-jid="<?=$j->id;?>" class="edit"><?=$w->task;?></a></td> <!-- Task Name -->
 					          <?php
 					         		for ( $x = 0; $x < 7; $x++ )
 					            echo "<td align='center'>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
@@ -69,7 +69,7 @@
 <!-- BEGIN VIEW TASK MODAL -->
 
 <div class="medium reveal" id="edittaskModal" data-reveal>
-  <h3>View Task</h3>
+  <h4 id="task-title"></h4>
 		<div class="row">
 			<div class="small-5 columns">
 				<label for="task">Task</label>
@@ -133,6 +133,11 @@
 				$('#end').val(field.end);
 				$('#notes').val(field.notes);
 				$("#editLink").attr("href", "<?=base_url()?>jobs/edit/" + field.project);
+			});
+		});
+		$.getJSON("<?=base_url()?>jobs/fetch/" + $(this).data('jid') + "/", function(result) {
+      $.each(result, function(i, field) {
+				$('#task-title').html(field.name + " - " + field.number);
 			});
 		});
 	});

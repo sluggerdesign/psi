@@ -4,7 +4,8 @@
 	</div>
 </div>
 
-<?php echo form_open('tasks/create');?>
+<?php $attributes = array('id' => 'create-task'); ?>
+<?php echo form_open('tasks/create', $attributes);?>
   <div class="row">
       <div class="small-5 columns">
         <label for="name">Task Name

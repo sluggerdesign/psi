@@ -6,7 +6,8 @@
 
 <?php if(isset($task)) : foreach($task as $t) : ?>
 
-  <?php echo form_open('tasks/edit');?>
+	<?php $attributes = array('id' => 'edit-task'); ?>
+  <?php echo form_open('tasks/edit', $attributes);?>
     <div class="row">
         <div class="small-5 columns">
           <label for="name">Task Name

@@ -4,7 +4,8 @@
 	</div>
 </div>
 
-<?php echo form_open('crew/create');?>
+<?php $attributes = array('id' => 'create-crew'); ?>
+<?php echo form_open('crew/create', $attributes);?>
   <div class="row">
       <div class="small-5 columns">
         <label for="name">Crew Member Name

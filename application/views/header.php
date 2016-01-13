@@ -20,6 +20,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="<?=base_url();?>library/scripts/sol.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="<?=base_url();?>library/scripts/jquery.validate.min.js"></script>
+    <script src="<?=base_url();?>library/scripts/validation.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
