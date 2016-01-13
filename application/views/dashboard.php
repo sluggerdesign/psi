@@ -53,7 +53,7 @@
                                     $WorkDateRange = createDateRangeArray($w->start, $w->end);
 					         		for ( $x = 0; $x < 7; $x++ )
                                     if (in_array(date( "Y-m-d", mktime( 0, 0, 0, $month, $day_start + $x, $year)), $WorkDateRange)) 
-                                        echo "<td align='center' style='background: turquoise'>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
+                                        echo "<td align='center' style='background: #87CEEB'><a data-open='edittaskModal' data-id=".$w->id." data-jid=".$j->id." class='edit'>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</a></td>";
                                     else
                                         echo "<td align='center'>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
 					          ?>
