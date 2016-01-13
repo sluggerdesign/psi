@@ -296,7 +296,7 @@
 
 <script type="text/javascript">
 	$('.edit').click( function(){
-		$("#edit-task").attr("action", "<?=base_url()?>work/edit/" + $(this).data('id'));
+		$("#edit-work").attr("action", "<?=base_url()?>work/edit/" + $(this).data('id'));
 		$.getJSON("<?=base_url()?>work/edit/" + $(this).data('id') + "/", function(result) {
 			$.each(result, function(i, field) {
 				$('#task').val(field.task);
