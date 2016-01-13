@@ -45,8 +45,8 @@
 </div>
 
 <?php if(isset($jobs)) : foreach($jobs as $j) : ?>
-
-  <?php echo form_open('jobs/edit');?>
+  <?php $attributes = array('id' => 'edit-job'); ?>
+  <?php echo form_open('jobs/edit', $attributes);?>
     <div class="row">
         <div class="small-5 columns">
           <label for="name">Job Name
@@ -121,7 +121,7 @@
               <td><?=$w->crew;?></td>
               <td><?=$w->start;?></td>
 							<td><?=$w->end;?></td>
-  			      <td><a data-open="edittaskModal" data-id="<?=$w->id;?>" data-pid="<?=$j->id;?>" class="edit"><i class="fi-pencil"></i> Edit</a></td>
+  			      <td><a data-open="edittaskModal" data-id="<?=$w->id;?>" data-jid="<?=$j->id;?>" class="edit"><i class="fi-pencil"></i> Edit</a></td>
   						<td><a href="/work/delete/<?=$w->id;?>/<?=$w->task;?>/<?=$j->id;?>"><i class="fi-x"></i> Delete</a></td>
   			    </tr>
           <?php endforeach; ?>
@@ -142,7 +142,8 @@
 <div class="medium reveal" id="addtaskModal" data-reveal>
   <h3>Add Task</h3>
 
-	<?php echo form_open('work/create');?>
+  <?php $attributes = array('id' => 'create-work'); ?>
+	<?php echo form_open('work/create', $attributes);?>
 		<div class="row">
 			<div class="small-5 columns">
 				<label for="task">Task</label>
@@ -171,7 +172,7 @@
 		<div class="row">
 	      <div class="small-5 columns">
 	        <label for="start">Start Date
-	          <input class="small-5" name="start" id="datepicker1" type="text" placeholder="Start Date">
+	          <input class="small-5" name="start" id="datepicker1" type="text" placeholder="Start Date" readonly="readonly">
 	        </label>
 	      </div>
 	  </div>
@@ -179,7 +180,7 @@
 		<div class="row">
 	      <div class="small-5 columns">
 	        <label for="end">End Date
-	          <input class="small-5" name="end" id="datepicker2" type="text" placeholder="End Date">
+	          <input class="small-5" name="end" id="datepicker2" type="text" placeholder="End Date" readonly="readonly">
 	        </label>
 	      </div>
 	  </div>
@@ -212,7 +213,7 @@
 
 <div class="medium reveal" id="edittaskModal" data-reveal>
   <h3>Edit Task</h3>
-	<?php $attributes = array('id' => 'edit'); ?>
+	<?php $attributes = array('id' => 'edit-work'); ?>
 	<?php echo form_open('work/edit', $attributes);?>
 		<div class="row">
 			<div class="small-5 columns">
@@ -242,7 +243,7 @@
 		<div class="row">
 	      <div class="small-5 columns">
 	        <label for="start">Start Date
-	          <input class="small-5 datepicker3" name="start" id="start" type="text" placeholder="Start Date">
+	          <input class="small-5 datepicker3" name="start" id="start" type="text" placeholder="Start Date" readonly="readonly">
 	        </label>
 	      </div>
 	  </div>
@@ -250,7 +251,7 @@
 		<div class="row">
 	      <div class="small-5 columns">
 	        <label for="end">End Date
-	          <input class="small-5 datepicker4" name="end" id="end" type="text" placeholder="End Date">
+	          <input class="small-5 datepicker4" name="end" id="end" type="text" placeholder="End Date" readonly="readonly">
 	        </label>
 	      </div>
 	  </div>
@@ -295,7 +296,7 @@
 
 <script type="text/javascript">
 	$('.edit').click( function(){
-		$("#edit").attr("action", "<?=base_url()?>work/edit/" + $(this).data('id'));
+		$("#edit-task").attr("action", "<?=base_url()?>work/edit/" + $(this).data('id'));
 		$.getJSON("<?=base_url()?>work/edit/" + $(this).data('id') + "/", function(result) {
 			$.each(result, function(i, field) {
 				$('#task').val(field.task);

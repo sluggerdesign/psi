@@ -4,7 +4,8 @@
 	</div>
 </div>
 
-<?php echo form_open('jobs/create');?>
+<?php $attributes = array('id' => 'create-job'); ?>
+<?php echo form_open('jobs/create', $attributes);?>
   <div class="row">
       <div class="small-5 columns">
         <label for="name">Job Name

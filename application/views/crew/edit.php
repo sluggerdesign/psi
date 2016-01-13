@@ -6,7 +6,8 @@
 
 <?php if(isset($crew)) : foreach($crew as $c) : ?>
 
-  <?php echo form_open('crew/edit');?>
+	<?php $attributes = array('id' => 'edit-crew'); ?>
+  <?php echo form_open('crew/edit', $attributes);?>
     <div class="row">
         <div class="small-5 columns">
           <label for="name">Crew Member Name

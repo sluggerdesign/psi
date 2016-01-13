@@ -6,7 +6,8 @@
 
 <?php if(isset($branch)) : foreach($branch as $b) : ?>
 
-  <?php echo form_open('branches/edit');?>
+	<?php $attributes = array('id' => 'edit-branch'); ?>
+  <?php echo form_open('branches/edit', $attributes);?>
     <div class="row">
         <div class="small-5 columns">
           <label for="name">Branch Name

@@ -6,7 +6,8 @@
 
 <?php if(isset($users)) : foreach($users as $u) : ?>
 
-  <?php echo form_open('users/edit');?>
+	<?php $attributes = array('id' => 'edit-user'); ?>
+  <?php echo form_open('users/edit', $attributes);?>
     <div class="row">
         <div class="small-5 columns">
           <label for="name">Name (First Last)

@@ -25,15 +25,15 @@
      ?>
 		  <div class="row">
 				<div class="small-12 columns text-center">
-					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($nav_week-1).'&year='.$nav_year; ?>">Previous</a> <!--Previous week-->
+					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($nav_week-1).'&year='.$nav_year; ?>"><i class="fi-arrow-left"></i>&nbsp;</a> <!--Previous week-->
 					<?php echo date("F",$time) . ' ' .date( "d", mktime( 0, 0, 0, $month, $day_start, $year)). ' - ' .date("F", mktime( 0, 0, 0, $month, $day_start + 6, $year)). ' ' .date("d", mktime( 0, 0, 0, $month, $day_start + 6, $year ));?>
-					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($nav_week+1).'&year='.$nav_year; ?>">Next</a> <!--Next week-->
+					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($nav_week+1).'&year='.$nav_year; ?>">&nbsp;<i class="fi-arrow-right"></i></a> <!--Next week-->
 				</div>
 		  </div>
 
 			<?php if(isset($branches)) : foreach($branches as $b) : ?> <!-- Looping through branches made available from controller -->
 
-				<h4 style="margin: 20px 0 20px 5px; color: #2199e8;"><?=$b->name;?></h4> <!-- Branch Name -->
+				<h4 style="margin: 20px 0 20px 5px;"><?=$b->name;?></h4> <!-- Branch Name -->
 
 				<?php if(isset($jobs)) : foreach($jobs as $j) : ?> <!-- Looping through jobs -->
 					<?php if ($j->branch == $b->id) : ?> <!-- If branch id matches job id then display table below with job name -->
@@ -48,7 +48,7 @@
 							<?php if(isset($work)) : foreach($work as $w) : ?> <!-- Looping through work tasks -->
 								<?php if ($j->id == $w->project) : ?> <!-- If task id matches job id then display table riw below with task data -->
 									<tr height="100">
-						      	<td><?=$w->task;?></td> <!-- Task Name -->
+						      	<td><a data-open="edittaskModal" data-id="<?=$w->id;?>" data-jid="<?=$j->id;?>" class="edit"><?=$w->task;?></a></td> <!-- Task Name -->
 					          <?php
 					         		for ( $x = 0; $x < 7; $x++ )
 					            echo "<td align='center'>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
@@ -65,3 +65,80 @@
 			<?php endif; ?> <!-- Branches -->
 	</div>
 </div>
+
+<!-- BEGIN VIEW TASK MODAL -->
+
+<div class="medium reveal" id="edittaskModal" data-reveal>
+  <h4 id="task-title"></h4>
+		<div class="row">
+			<div class="small-5 columns">
+				<label for="task">Task</label>
+				<input type="text" id="task" name="task" disabled>
+			</div>
+		</div>
+
+		<div class="row" style="margin-bottom:20px">
+			<div class="small-10 columns">
+				<label for="crew">Crew</label>
+					<textarea name="crew" id="crew" rows="4"></textarea>
+			</div>
+		</div>
+
+		<div class="row">
+	      <div class="small-5 columns">
+	        <label for="start">Start Date
+	          <input class="small-5 datepicker3" name="start" id="start" type="text" placeholder="Start Date" disabled>
+	        </label>
+	      </div>
+	  </div>
+
+		<div class="row">
+	      <div class="small-5 columns">
+	        <label for="end">End Date
+	          <input class="small-5 datepicker4" name="end" id="end" type="text" placeholder="End Date" disabled>
+	        </label>
+	      </div>
+	  </div>
+
+		<div class="row">
+	      <div class="small-10 columns">
+	        <label for="notes">Notes</label>
+	          <textarea name="notes" id="notes" rows="4"></textarea>
+	      </div>
+	  </div>
+
+	  <div class="row">
+	    <div class="small-12 columns">
+				<a href="jobs/edit/" id="editLink" class="button"><i class="fi-pencil"></i> Update</a>
+	    </div>
+	  </div>
+
+  <button class="close-button" data-close aria-label="Close reveal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<!-- END VIEW TASK MODAL -->
+
+<!-- Retrieve Task Data -->
+
+<script type="text/javascript">
+	$('.edit').click( function(){
+		$("#edit").attr("action", "<?=base_url()?>work/edit/" + $(this).data('id'));
+		$.getJSON("<?=base_url()?>work/edit/" + $(this).data('id') + "/", function(result) {
+			$.each(result, function(i, field) {
+				$('#task').val(field.task);
+				$('#crew').val(field.crew);
+				$('#start').val(field.start);
+				$('#end').val(field.end);
+				$('#notes').val(field.notes);
+				$("#editLink").attr("href", "<?=base_url()?>jobs/edit/" + field.project);
+			});
+		});
+		$.getJSON("<?=base_url()?>jobs/fetch/" + $(this).data('jid') + "/", function(result) {
+      $.each(result, function(i, field) {
+				$('#task-title').html(field.name + " - " + field.number);
+			});
+		});
+	});
+</script>

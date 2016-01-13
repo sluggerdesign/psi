@@ -18,6 +18,15 @@ class Jobs extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function fetch() {
+		$this->authorize();
+		$this->load->model('Jobsmodel');
+
+		$data['job'] = $this->Jobsmodel->getRecord($this->uri->segment(3));
+
+		echo json_encode($data['job']);
+	}
+
 	public function create() {
 		$this->authorize();
 		$this->load->model('Jobsmodel');
