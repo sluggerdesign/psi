@@ -21,7 +21,8 @@ class Jobsmodel extends CI_Model {
 
   function getRecords()
 	{
-		$this->db->order_by("timestamp", "asc");
+		$this->db->where('completed', NULL);
+		$this->db->order_by("branch", "asc");
 		$q = $this->db->get('jobs');
 
 		if($q->num_rows() > 0){
@@ -30,6 +31,19 @@ class Jobsmodel extends CI_Model {
 			}
 			return $data;
 			}
+	}
+
+	function getFilteredRecords($branch) {
+		$this->db->where('completed', NULL);
+		$this->db->where('branch', $branch);
+		$q = $this->db->get('jobs');
+
+		if($q->num_rows() > 0) {
+			foreach ($q->result() as $row) {
+				$data[] = $row;
+		}
+		return $data;
+		}
 	}
 
 	function create($data)
@@ -47,6 +61,8 @@ class Jobsmodel extends CI_Model {
 
 	function delete($id)
 	{
+		$this->db->where('project', $id);
+		$this->db->delete('work');
 		$this->db->where('id', $id);
 		$this->db->delete('jobs');
 	}
