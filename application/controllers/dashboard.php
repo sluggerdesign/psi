@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller {
 			$data['branches'] = array();
 			foreach ($data['allbranches'] as $b) {
 				foreach ($data['jobs'] as $j) {
-					if ($j->branch == $b->id) {
+					if ($j->branch == $b->id && $j->completed == NULL) {
 						$o = new stdClass;
     				$o->id=$b->id;
     				$o->name=$b->name;
@@ -26,7 +26,9 @@ class Dashboard extends CI_Controller {
 					}
 				}
 			}
-			//$data['branches'] = array_unique($data['branches']);
+			$data['branches'] = array_map('json_encode', $data['branches']);
+			$data['branches'] = array_unique($data['branches']);
+			$data['branches'] = array_map('json_decode', $data['branches']);
 			sort($data['branches']);
 		}
 

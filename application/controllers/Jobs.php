@@ -9,13 +9,45 @@ class Jobs extends CI_Controller {
 		$this->load->model('Branchesmodel');
 
 		$data['branches'] = $this->Branchesmodel->getRecords();
-
-		$data['title'] = "Jobs | Petroleum Solutions Project Management";
 		$data['jobs'] = $this->Jobsmodel->getRecords();
+		$data['title'] = "Jobs | Petroleum Solutions Project Management";
 
 		$this->load->view('header', $data);
 		$this->load->view('jobs/index');
 		$this->load->view('footer');
+	}
+
+	public function filter() {
+		$this->authorize();
+		$this->load->model('Jobsmodel');
+		$this->load->model('Branchesmodel');
+
+		$data['branches'] = $this->Branchesmodel->getRecords();
+		$data['title'] = "Jobs | Petroleum Solutions Project Management";
+
+		if($_POST) {
+			$branch = $this->input->post('branch');
+
+			if ($branch == 'All') {
+				$data['jobs'] = $this->Jobsmodel->getRecords();
+			} else {
+				$data['jobs'] = $this->Jobsmodel->getFilteredRecords($branch);
+
+				$data['filters'] = array();
+				foreach ($data['branches'] as $b) {
+					if ($branch == $b->id) {
+						$o = new stdClass;
+    				$o->value=$branch;
+    				$o->name=$b->name;
+						array_push($data['filters'], $o);
+					}
+				}
+			}
+
+			$this->load->view('header', $data);
+			$this->load->view('jobs/index');
+			$this->load->view('footer');
+		}
 	}
 
 	public function fetch() {
@@ -38,11 +70,13 @@ class Jobs extends CI_Controller {
 			$name = $this->sanitize->trimFirstCaps($this->input->post('name'));
 			$number = $this->sanitize->trimFirstCaps($this->input->post('number'));
 			$branch = $this->input->post('branch');
+			$completed = $this->input->post('completed');
 
 			$data = array(
 				'name' => $name,
 				'number' => $number,
-				'branch' => $branch
+				'branch' => $branch,
+				'completed' => $completed
 			);
 
 			$this->Jobsmodel->create($data);
@@ -78,16 +112,23 @@ class Jobs extends CI_Controller {
 			$name = $this->sanitize->trimFirstCaps($this->input->post('name'));
 			$number = $this->sanitize->trimFirstCaps($this->input->post('number'));
 			$branch = $this->input->post('branch');
+			$completed = $this->input->post('completed');
+
 
 			$data = array(
 				'name' => $name,
 				'number' => $number,
-				'branch' => $branch
+				'branch' => $branch,
+				'completed' => $completed
 			);
 
 			$this->Jobsmodel->update($data, $id);
 
-			$this->session->set_flashdata('updated', $name);
+			if ($completed == 1) {
+				$this->session->set_flashdata('completed', $name);
+			} else {
+				$this->session->set_flashdata('updated', $name);
+			}
 			redirect('jobs/index');
 		}
 

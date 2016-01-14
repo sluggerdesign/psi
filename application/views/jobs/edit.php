@@ -82,6 +82,14 @@
 	    </div>
     </div>
 
+    <div class="row">
+      <div class="small-5 columns">
+        <label>
+          <input type="checkbox" name="completed" id="completed" <?php if ($j->completed== '1') { echo "checked='checked'"; }?> value="1"> Completed
+				</label>
+      </div>
+    </div>
+
 		<div class="row">
       <div class="small-12 columns">
         <button type="submit" class="button"><i class="fi-pencil"></i> Update</button>
