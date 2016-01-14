@@ -153,7 +153,7 @@
   <?php $attributes = array('id' => 'create-work'); ?>
 	<?php echo form_open('work/create', $attributes);?>
 		<div class="row">
-			<div class="small-5 columns">
+			<div class="small-8 columns">
 				<label for="task">Task</label>
 				<select name="task">
 					<option value="">Choose Task</option>
@@ -168,7 +168,7 @@
 		<div class="row" style="margin-bottom:20px">
 			<div class="small-10 columns">
 				<label for="crew"> Crew</label>
-				<select name="crew[]" id="addcrew" multiple="multiple">
+				<select name="crew[]" id="addcrew" multiple="multiple" class="multi-select" data-placeholder="Select Crew" data-allow-clear="true">
 					<?php if(isset($crew)) : foreach($crew as $c) : ?>
 						<option value="<?=$c->name;?>"><?=$c->name;?></option>
 					<?php endforeach; ?>
@@ -224,7 +224,7 @@
 	<?php $attributes = array('id' => 'edit-work'); ?>
 	<?php echo form_open('work/edit', $attributes);?>
 		<div class="row">
-			<div class="small-5 columns">
+			<div class="small-8 columns">
 				<label for="task">Task</label>
 				<select name="task" id="task">
 					<option value="">Choose Task</option>
@@ -236,10 +236,18 @@
 			</div>
 		</div>
 
+    <div class="row assigned-crew">
+      <div class="small-10 columns">
+        <label for="assigned-crew">Currently Assigned Crew
+          <input type="text" id="assigned-crew" name="assigned-crew" readonly="readonly" value="">
+        </label>
+      </div>
+    </div>
+
 		<div class="row" style="margin-bottom:20px">
 			<div class="small-10 columns">
-				<label for="crew"> Crew</label>
-				<select name="crew[]" id="crew" multiple="multiple">
+				<label for="crew"> Update Crew</label>
+				<select name="crew[]" id="crew" multiple="multiple" class="multi-select" data-placeholder="Update Crew" data-allow-clear="true">
 					<?php if(isset($crew)) : foreach($crew as $c) : ?>
 						<option value="<?=$c->name;?>"><?=$c->name;?></option>
 					<?php endforeach; ?>
@@ -289,17 +297,9 @@
 <!-- END EDIT TASK MODAL -->
 
 <script type="text/javascript">
-    $(function() {
-        // initialize sol
-        $('#crew').searchableOptionList();
-    });
-</script>
-
-<script type="text/javascript">
-    $(function() {
-        // initialize sol
-        $('#addcrew').searchableOptionList();
-    });
+  // Initialize select2 Multiple Select
+  $('#crew').select2();
+  $('#addcrew').select2();
 </script>
 
 <script type="text/javascript">
@@ -307,8 +307,9 @@
 		$("#edit-work").attr("action", "<?=base_url()?>work/edit/" + $(this).data('id'));
 		$.getJSON("<?=base_url()?>work/edit/" + $(this).data('id') + "/", function(result) {
 			$.each(result, function(i, field) {
-				$('#task').val(field.task);
-				$('#crew').val(field.crew);
+        $('#assigned-crew').val(field.crew);
+        $("#crew").select2("val", "");
+        $('#task').val(field.task);
 				$('#start').val(field.start);
 				$('#end').val(field.end);
 				$('#notes').val(field.notes);
