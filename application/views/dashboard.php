@@ -2,6 +2,36 @@
 	<div class="small-12 columns">
 		<h3>Dashboard</h3>
 
+		<?php $attributes = array('id' => 'filter-branches'); ?>
+		<?php echo form_open('dashboard/filter', $attributes);?>
+		<div class="row jobs-search-module">
+		  <div class="small-12 medium-4 large-4 columns">
+		    <label for="Branch">Filter by Branch</label>
+		    <select name="branch" id="branch">
+		      <?php if(isset($filters)) : ?>
+		        <?php if(isset($filters)) : foreach($filters as $f) : ?>
+		          <option value="All">Show All</option>
+		          <option value="<?=$f->value;?>" selected><?=$f->name;?></option>
+		        <?php endforeach; ?>
+		        <?php endif; ?>
+		      <?php else : ?>
+		        <option value="All">Show All</option>
+		      <?php endif ?>
+		      <?php if(isset($dropbranches)) : foreach($dropbranches as $b) : ?>
+		        <option value="<?=$b->id;?>"><?=$b->name;?></option>
+		      <?php endforeach; ?>
+					<?php elseif(isset($branches)) : foreach($branches as $b) : ?>
+						<option value="<?=$b->id;?>"><?=$b->name;?></option>
+					<?php endforeach; ?>
+		      <?php endif; ?>
+		    </select>
+		  </div>
+		  <div class="small-12 medium-4 large-4 columns end">
+		    <button type="submit" class="button"><i class="fi-target-two"></i> Filter</button>
+		  </div>
+		</div>
+		<?php echo form_close(); ?>
+
 			<?php
         $dt = new DateTime;
         if (isset($_GET['year']) && isset($_GET['week'])) {
