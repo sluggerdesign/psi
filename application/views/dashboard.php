@@ -84,18 +84,19 @@
 <div class="medium reveal" id="edittaskModal" data-reveal>
   <h4 id="task-title"></h4>
 		<div class="row">
-			<div class="small-5 columns">
+			<div class="small-8 columns">
 				<label for="task">Task</label>
 				<input type="text" id="task" name="task" disabled>
 			</div>
 		</div>
 
-		<div class="row" style="margin-bottom:20px">
-			<div class="small-10 columns">
-				<label for="crew">Crew</label>
-					<textarea name="crew" id="crew" rows="4"></textarea>
-			</div>
-		</div>
+		<div class="row assigned-crew">
+      <div class="small-10 columns">
+        <label for="crew">Currently Assigned Crew
+          <input type="text" id="crew" name="crew" readonly="readonly" value="">
+        </label>
+      </div>
+    </div>
 
 		<div class="row">
 	      <div class="small-5 columns">
