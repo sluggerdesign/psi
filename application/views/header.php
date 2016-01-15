@@ -47,6 +47,7 @@
             <li><a href="/crew">Crew</a></li>
             <li><a href="/tasks">Tasks</a></li>
             <li><a href="/users">Users</a></li>
+            <li><a href="/reports">Reports</a></li>
           </ul>
         </div>
         <div class="top-bar-right">
