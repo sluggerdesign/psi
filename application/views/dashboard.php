@@ -61,7 +61,7 @@
      ?>
 
 		  <div class="row">
-				<div class="small-12 columns text-center">
+				<div class="small-12 columns text-center dashboard-nav">
 					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($nav_week-1).'&year='.$nav_year; ?>"><i class="fi-arrow-left"></i>&nbsp;</a> <!--Previous week-->
 					<?php echo date("F",$time) . ' ' .date( "d", mktime( 0, 0, 0, $month, $day_start, $year)). ' - ' .date("F", mktime( 0, 0, 0, $month, $day_start + 6, $year)). ' ' .date("d", mktime( 0, 0, 0, $month, $day_start + 6, $year ));?>
 					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($nav_week+1).'&year='.$nav_year; ?>">&nbsp;<i class="fi-arrow-right"></i></a> <!--Next week-->
