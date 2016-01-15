@@ -10,9 +10,23 @@ class Reports extends CI_Controller {
 		$this->load->model('Workmodel');
 
 		$data['title'] = "Reports | Petroleum Solutions Project Management";
-		$data['branches'] = $this->Branchesmodel->getActiveRecords();
 		$data['jobs'] = $this->Jobsmodel->getRecords();
 		$data['work'] = $this->Workmodel->getAllRecords();
+    $data['branches_menu'] = $this->Branchesmodel->getActiveRecords();
+
+    if($_POST) {
+			$id = $this->input->post('branch');
+
+			if ($id == "All") {
+				redirect('reports');
+			}
+
+			$data['branches'] = $this->Branchesmodel->getRecord($id);
+			$this->session->set_flashdata('filter', 'true');
+
+		} else {
+			$data['branches'] = $this->Branchesmodel->getActiveRecords();
+		}
 
 		$this->load->view('header', $data);
 		$this->load->view('reports/index');

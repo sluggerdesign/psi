@@ -2,6 +2,34 @@
 	<div class="small-12 columns">
 		<h3>Reports</h3>
 
+    <?php $attributes = array('id' => 'filter-branches'); ?>
+		<?php echo form_open('reports', $attributes);?>
+		<div class="row jobs-search-module">
+		  <div class="small-12 medium-4 large-4 columns">
+		    <label for="Branch">Filter by Branch</label>
+		    <select name="branch" id="branch">
+		      <?php if ($this->session->flashdata('filter')) : ?>
+		        <?php if(isset($branches)) : foreach($branches as $b) : ?>
+		          <option value="All">Show All</option>
+		          <option value="<?=$b->id;?>" selected><?=$b->name;?></option>
+		        <?php endforeach; ?>
+		        <?php endif; ?>
+		      <?php else : ?>
+		        <option value="All">Show All</option>
+		      <?php endif ?>
+
+					<?php if(isset($branches_menu)) : foreach($branches_menu as $b) : ?>
+						<option value="<?=$b->id;?>"><?=$b->name;?></option>
+					<?php endforeach; ?>
+		      <?php endif; ?>
+		    </select>
+		  </div>
+		  <div class="small-12 medium-4 large-4 columns end">
+		    <button type="submit" class="button"><i class="fi-target-two"></i> Filter</button>
+		  </div>
+		</div>
+		<?php echo form_close(); ?>
+
     <?php if(isset($branches)) : foreach($branches as $b) : ?>
       <h4 style="margin: 20px 0 20px 5px;"><?=$b->name;?></h4>
 
