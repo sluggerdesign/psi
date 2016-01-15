@@ -3,13 +3,13 @@
 		<h3>Reports</h3>
 
     <?php if(isset($branches)) : foreach($branches as $b) : ?>
-      <h4 style="margin: 20px 0 20px 5px;"><?=$b->name;?></h4> <!-- Branch Name -->
+      <h4 style="margin: 20px 0 20px 5px;"><?=$b->name;?></h4>
 
-      <?php if(isset($jobs)) : foreach($jobs as $j) : ?> <!-- Looping through jobs -->
-        <?php if ($j->branch == $b->id) : ?> <!-- If branch id matches job id then display table below with job name -->
+      <?php if(isset($jobs)) : foreach($jobs as $j) : ?>
+        <?php if ($j->branch == $b->id) : ?>
           <table class="dashboard-table">
             <tr>
-              <th width="300" align="left"><?=$j->name;?> - <?=$j->number;?></th> <!-- Job Name and Number -->
+              <th width="300" align="left"><?=$j->name;?> - <?=$j->number;?></th>
             </tr>
             <tr>
               <th align="left" width="200">Task</th>
@@ -18,10 +18,10 @@
               <th align="left" width="400">Crew</th>
               <th align="left" width="300">Notes</th>
             </tr>
-            <?php if(isset($work)) : foreach($work as $w) : ?> <!-- Looping through work tasks -->
-              <?php if ($j->id == $w->project) : ?> <!-- If task id matches job id then display table riw below with task data -->
+            <?php if(isset($work)) : foreach($work as $w) : ?>
+              <?php if ($j->id == $w->project) : ?>
                 <tr>
-                  <td align="left"><?=$w->task;?></a></td> <!-- Task Name -->
+                  <td align="left"><?=$w->task;?></a></td>
                   <td align="left"><?=$w->start;?></a></td>
                   <td align="left"><?=$w->end;?></a></td>
                   <td align="left"><?=$w->crew;?></a></td>
@@ -34,5 +34,5 @@
         <?php endif; ?>
       <?php endforeach; ?>
       <?php endif; ?>
-    <?php endforeach; ?> <!-- Branches -->
-    <?php endif; ?> <!-- Branches -->
+    <?php endforeach; ?>
+    <?php endif; ?>
