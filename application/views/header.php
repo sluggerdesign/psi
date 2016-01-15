@@ -23,6 +23,9 @@
     <script src="<?=base_url();?>library/scripts/validation.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
 
+    <script src="https://use.typekit.net/nqm8iur.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
