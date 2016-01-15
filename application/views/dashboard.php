@@ -3,24 +3,22 @@
 		<h3>Dashboard</h3>
 
 		<?php $attributes = array('id' => 'filter-branches'); ?>
-		<?php echo form_open('dashboard/filter', $attributes);?>
+		<?php echo form_open('dashboard', $attributes);?>
 		<div class="row jobs-search-module">
 		  <div class="small-12 medium-4 large-4 columns">
 		    <label for="Branch">Filter by Branch</label>
 		    <select name="branch" id="branch">
-		      <?php if(isset($filters)) : ?>
-		        <?php if(isset($filters)) : foreach($filters as $f) : ?>
+		      <?php if ($this->session->flashdata('filter')) : ?>
+		        <?php if(isset($branches)) : foreach($branches as $b) : ?>
 		          <option value="All">Show All</option>
-		          <option value="<?=$f->value;?>" selected><?=$f->name;?></option>
+		          <option value="<?=$b->id;?>" selected><?=$b->name;?></option>
 		        <?php endforeach; ?>
 		        <?php endif; ?>
 		      <?php else : ?>
 		        <option value="All">Show All</option>
 		      <?php endif ?>
-		      <?php if(isset($dropbranches)) : foreach($dropbranches as $b) : ?>
-		        <option value="<?=$b->id;?>"><?=$b->name;?></option>
-		      <?php endforeach; ?>
-					<?php elseif(isset($branches)) : foreach($branches as $b) : ?>
+
+					<?php if(isset($branches_menu)) : foreach($branches_menu as $b) : ?>
 						<option value="<?=$b->id;?>"><?=$b->name;?></option>
 					<?php endforeach; ?>
 		      <?php endif; ?>
@@ -167,7 +165,7 @@
 <!-- BEGIN CREATE DATE RANGE ARRAY -->
 
 <?php
-function createDateRangeArray($strDateFrom,$strDateTo) {
+	function createDateRangeArray($strDateFrom,$strDateTo) {
     // takes two dates formatted as YYYY-MM-DD and creates an
     // inclusive array of the dates between the from and to dates.
 
@@ -189,7 +187,7 @@ function createDateRangeArray($strDateFrom,$strDateTo) {
 	    }
     }
     return $aryRange;
-}
+	}
 ?>
 
 <!-- END CREATE DATE RANGE ARRAY -->
