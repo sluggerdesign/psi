@@ -33,6 +33,22 @@ class Reports extends CI_Controller {
 		$this->load->view('footer');
   }
 
+  public function printme() {
+    $this->authorize();
+		$this->load->model('Branchesmodel');
+		$this->load->model('Jobsmodel');
+		$this->load->model('Workmodel');
+
+    $data['title'] = "Reports | Petroleum Solutions Project Management";
+		$data['jobs'] = $this->Jobsmodel->getRecords();
+		$data['work'] = $this->Workmodel->getAllRecords();
+    $data['branches'] = $this->Branchesmodel->getActiveRecords();
+
+    $this->load->view('print_head', $data);
+		$this->load->view('reports/printme');
+		$this->load->view('footer');
+  }
+
   // Authentication
 
   private
