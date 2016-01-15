@@ -1,6 +1,13 @@
 <div class="row dashboard-module">
 	<div class="small-12 columns">
-		<h3>Dashboard</h3>
+		<div class="row">
+			<div class="small-6 columns">
+				<h3>Dashboard</h3>
+			</div>
+			<div class="small-6 columns text-right">
+				<a href="/jobs/create" class="button"><i class="fi-plus"></i> Add Job</a>
+			</div>
+		</div>
 
 		<?php $attributes = array('id' => 'filter-branches'); ?>
 		<?php echo form_open('dashboard', $attributes);?>
@@ -80,8 +87,9 @@
 
 							<?php if(isset($work)) : foreach($work as $w) : ?> <!-- Looping through work tasks -->
 								<?php if ($j->id == $w->project) : ?> <!-- If task id matches job id then display table riw below with task data -->
-									<tr height="100">
-						      	<td><a data-open="edittaskModal" data-id="<?=$w->id;?>" data-jid="<?=$j->id;?>" class="edit"><?=$w->task;?></a></td> <!-- Task Name -->
+									<tr>
+										<?php $crewCollection = explode(',', $w->crew); ?>
+						      	<td><a data-open="edittaskModal" data-id="<?=$w->id;?>" data-jid="<?=$j->id;?>" class="edit"><?=$w->task;?> (<?php echo count($crewCollection); ?>)</a></td> <!-- Task Name -->
 
 										<?php
 	                    $WorkDateRange = createDateRangeArray($w->start, $w->end);

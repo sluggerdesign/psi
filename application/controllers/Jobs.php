@@ -8,46 +8,28 @@ class Jobs extends CI_Controller {
 		$this->load->model('Jobsmodel');
 		$this->load->model('Branchesmodel');
 
-		$data['branches'] = $this->Branchesmodel->getRecords();
-		$data['jobs'] = $this->Jobsmodel->getRecords();
 		$data['title'] = "Jobs | Petroleum Solutions Project Management";
+		$data['jobs'] = $this->Jobsmodel->getRecords();	
+		$data['branches_menu'] = $this->Branchesmodel->getActiveRecords();
+
+		if($_POST) {
+			$id = $this->input->post('branch');
+
+			if ($id == "All") {
+				redirect('jobs');
+			}
+
+			$data['branches'] = $this->Branchesmodel->getRecord($id);
+			$data['jobs'] = $this->Jobsmodel->getActiveRecords($id);
+			$this->session->set_flashdata('filter', 'true');
+
+		} else {
+			$data['branches'] = $this->Branchesmodel->getActiveRecords();
+		}
 
 		$this->load->view('header', $data);
 		$this->load->view('jobs/index');
 		$this->load->view('footer');
-	}
-
-	public function filter() {
-		$this->authorize();
-		$this->load->model('Jobsmodel');
-		$this->load->model('Branchesmodel');
-
-		$data['branches'] = $this->Branchesmodel->getRecords();
-		$data['title'] = "Jobs | Petroleum Solutions Project Management";
-
-		if($_POST) {
-			$branch = $this->input->post('branch');
-
-			if ($branch == 'All') {
-				$data['jobs'] = $this->Jobsmodel->getRecords();
-			} else {
-				$data['jobs'] = $this->Jobsmodel->getFilteredRecords($branch);
-
-				$data['filters'] = array();
-				foreach ($data['branches'] as $b) {
-					if ($branch == $b->id) {
-						$o = new stdClass;
-    				$o->value=$branch;
-    				$o->name=$b->name;
-						array_push($data['filters'], $o);
-					}
-				}
-			}
-
-			$this->load->view('header', $data);
-			$this->load->view('jobs/index');
-			$this->load->view('footer');
-		}
 	}
 
 	public function fetch() {

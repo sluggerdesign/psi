@@ -1,6 +1,13 @@
 <div class="row reports-module">
 	<div class="small-12 columns">
-		<h3>Reports</h3>
+		<div class="row">
+			<div class="small-6 columns">
+				<h3>Reports</h3>
+			</div>
+			<div class="small-6 columns text-right">
+				<a href="" class="button"><i class="fi-print"></i> Print</a>
+			</div>
+		</div>
 
     <?php $attributes = array('id' => 'filter-branches'); ?>
 		<?php echo form_open('reports', $attributes);?>

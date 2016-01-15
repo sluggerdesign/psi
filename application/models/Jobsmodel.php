@@ -33,6 +33,19 @@ class Jobsmodel extends CI_Model {
 			}
 	}
 
+	function getActiveRecords($id) {
+		$this->db->where('branch', $id);
+		$this->db->order_by("timestamp", "asc");
+		$q = $this->db->get('jobs');
+
+		if($q->num_rows() > 0){
+				foreach($q->result() as $row) {
+					$data[] =$row;
+			}
+			return $data;
+			}
+	}
+
 	function getFilteredRecords($branch) {
 		$this->db->where('completed', NULL);
 		$this->db->where('branch', $branch);
