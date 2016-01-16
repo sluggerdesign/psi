@@ -9,7 +9,7 @@ class Jobs extends CI_Controller {
 		$this->load->model('Branchesmodel');
 
 		$data['title'] = "Jobs | Petroleum Solutions Project Management";
-		$data['jobs'] = $this->Jobsmodel->getRecords();	
+		$data['jobs'] = $this->Jobsmodel->getRecords();
 		$data['branches_menu'] = $this->Branchesmodel->getActiveRecords();
 
 		if($_POST) {
@@ -96,6 +96,13 @@ class Jobs extends CI_Controller {
 			$branch = $this->input->post('branch');
 			$completed = $this->input->post('completed');
 
+			if ($completed == true) {
+				$data = array('assigned' => NULL);
+				$this->Crewmodel->updateAssigned($data, $id);
+			} else {
+				$data = array('assigned' => 1);
+				$this->Crewmodel->updateAssigned($data, $id);
+			}
 
 			$data = array(
 				'name' => $name,

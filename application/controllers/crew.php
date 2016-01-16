@@ -66,6 +66,14 @@ class Crew extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function getAssigned() {
+		$this->authorize();
+		$this->load->model('Crewmodel');
+
+		$data['assigned'] = $this->Crewmodel->getAssigned();
+		echo json_encode($data['assigned']);
+	}
+
 	public function delete() {
 		$this->authorize();
 		$this->load->model('Crewmodel');
