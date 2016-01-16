@@ -7,23 +7,23 @@
 <?php $attributes = array('id' => 'create-job'); ?>
 <?php echo form_open('jobs/create', $attributes);?>
   <div class="row">
-      <div class="small-5 columns">
+      <div class="small-12 medium-5 columns">
         <label for="name">Job Name
-          <input class="small-5 columns" name="name" id="name" type="text" placeholder="Job Name">
+          <input name="name" id="name" type="text" placeholder="Job Name">
         </label>
       </div>
   </div>
 
   <div class="row">
-      <div class="small-5 columns">
+      <div class="small-12 medium-5 columns">
         <label for="number">Job Number
-          <input class="small-5 columns" name="number" id="number" type="text" placeholder="Job Number">
+          <input name="number" id="number" type="text" placeholder="Job Number">
         </label>
       </div>
   </div>
 
   <div class="row">
-    <div class="small-5 columns">
+    <div class="small-12 medium-5 columns">
       <label for="Branch">Branch</label>
       <select name="branch" id="branch">
         <option value="">Choose Branch</option>

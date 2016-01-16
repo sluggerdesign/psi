@@ -28,9 +28,9 @@
 
 	<?php echo form_open('login');?>
 		<div class="row">
-		    <div class="small-3 columns">
-					<input class="small-3 columns" name="username" id="username" type="text" placeholder="User Name">
-					<input class="small-3 columns" name="password" id="password" type="password" placeholder="Password">
+		    <div class="small-12 medium-6 large-4 columns">
+					<input name="username" id="username" type="text" placeholder="User Name">
+					<input name="password" id="password" type="password" placeholder="Password">
 			</div>
 		</div>
 

@@ -7,9 +7,9 @@
 <?php $attributes = array('id' => 'create-branch'); ?>
 <?php echo form_open('branches/create', $attributes);?>
   <div class="row">
-      <div class="small-5 columns">
+      <div class="small-12 medium-5 columns">
         <label for="name">Branch Name
-          <input class="small-5 columns" name="name" id="name" type="text" placeholder="Branch Name">
+          <input name="name" id="name" type="text" placeholder="Branch Name">
         </label>
       </div>
   </div>

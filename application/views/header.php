@@ -36,13 +36,9 @@
   <body>
 
     <header>
-      <div class="title-bar" data-responsive-toggle="realEstateMenu" data-hide-for="small">
-        <button class="menu-icon" type="button" data-toggle></button>
-        <div class="title-bar-title">Menu</div>
-      </div>
-      <div class="top-bar" id="realEstateMenu">
+      <div class="top-bar">
         <div class="top-bar-left">
-          <ul class="menu" data-responsive-menu="accordion">
+          <ul class="menu">
             <li class="menu-text">PSI SCHEDULE</li>
             <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/jobs">Jobs</a></li>

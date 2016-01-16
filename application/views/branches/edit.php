@@ -9,9 +9,9 @@
 	<?php $attributes = array('id' => 'edit-branch'); ?>
   <?php echo form_open('branches/edit', $attributes);?>
     <div class="row">
-        <div class="small-5 columns">
+        <div class="small-12 medium-5 columns">
           <label for="name">Branch Name
-            <input class="small-5 columns" name="name" id="name" type="text" placeholder="Branch Name" value="<?=$b->name;?>">
+            <input name="name" id="name" type="text" placeholder="Branch Name" value="<?=$b->name;?>">
             <input name="id" id="id" type="hidden" value="<?=$b->id;?>">
           </label>
         </div>

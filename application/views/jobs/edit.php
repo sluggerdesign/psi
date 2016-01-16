@@ -48,24 +48,24 @@
   <?php $attributes = array('id' => 'edit-job'); ?>
   <?php echo form_open('jobs/edit', $attributes);?>
     <div class="row">
-        <div class="small-5 columns">
+        <div class="small-12 medium-5 columns">
           <label for="name">Job Name
-            <input class="small-5 columns" name="name" id="name" type="text" placeholder="Job Name" value="<?=$j->name;?>">
+            <input name="name" id="name" type="text" placeholder="Job Name" value="<?=$j->name;?>">
             <input name="id" id="id" type="hidden" value="<?=$j->id;?>">
           </label>
         </div>
     </div>
 
     <div class="row">
-        <div class="small-5 columns">
+        <div class="small-12 medium-5 columns">
           <label for="number">Job Number
-            <input class="small-5 columns" name="number" id="number" type="text" placeholder="Job Number" value="<?=$j->number;?>">
+            <input name="number" id="number" type="text" placeholder="Job Number" value="<?=$j->number;?>">
           </label>
         </div>
     </div>
 
     <div class="row">
-      <div class="small-5 columns">
+      <div class="small-12 medium-5 columns">
         <label for="branch">Branch</label>
         <select name="branch" id="branch">
           <?php foreach ($branches as $b) {
@@ -83,7 +83,7 @@
     </div>
 
     <div class="row">
-      <div class="small-5 columns">
+      <div class="small-12 medium-5 columns">
         <label>
           <input type="checkbox" name="completed" id="completed" <?php if ($j->completed== '1') { echo "checked='checked'"; }?> value="1"> Completed
 				</label>
@@ -153,7 +153,7 @@
   <?php $attributes = array('id' => 'create-work'); ?>
 	<?php echo form_open('work/create', $attributes);?>
 		<div class="row">
-			<div class="small-8 columns">
+			<div class="small-12 medium-8 columns">
 				<label for="task">Task</label>
 				<select name="task">
 					<option value="">Choose Task</option>
@@ -166,7 +166,7 @@
 		</div>
 
 		<div class="row" style="margin-bottom:20px">
-			<div class="small-10 columns">
+			<div class="small-12 medium-10 columns">
 				<label for="crew"> Crew</label>
 				<select name="crew[]" id="addcrew" multiple="multiple" class="multi-select" data-placeholder="Select Crew" data-allow-clear="true">
 					<?php if(isset($crew)) : foreach($crew as $c) : ?>
@@ -178,23 +178,23 @@
 		</div>
 
 		<div class="row">
-	      <div class="small-5 columns">
+	      <div class="small-12 medium-5 columns">
 	        <label for="start">Start Date
-	          <input class="small-5" name="start" id="datepicker1" type="text" placeholder="Start Date" readonly="readonly">
+	          <input name="start" id="datepicker1" type="text" placeholder="Start Date" readonly="readonly">
 	        </label>
 	      </div>
 	  </div>
 
 		<div class="row">
-	      <div class="small-5 columns">
+	      <div class="small-12 medium-5 columns">
 	        <label for="end">End Date
-	          <input class="small-5" name="end" id="datepicker2" type="text" placeholder="End Date" readonly="readonly">
+	          <input name="end" id="datepicker2" type="text" placeholder="End Date" readonly="readonly">
 	        </label>
 	      </div>
 	  </div>
 
 		<div class="row">
-	      <div class="small-10 columns">
+	      <div class="small-12 medium-10 columns">
 	        <label for="notes">Notes</label>
 	          <textarea name="notes" rows="4"></textarea>
 	      </div>
@@ -224,7 +224,7 @@
 	<?php $attributes = array('id' => 'edit-work'); ?>
 	<?php echo form_open('work/edit', $attributes);?>
 		<div class="row">
-			<div class="small-8 columns">
+			<div class="small-12 medium-8 columns">
 				<label for="task">Task</label>
 				<select name="task" id="task">
 					<option value="">Choose Task</option>
@@ -237,7 +237,7 @@
 		</div>
 
     <div class="row assigned-crew">
-      <div class="small-10 columns">
+      <div class="small-12 medium-10 columns">
         <label for="assigned-crew">Currently Assigned Crew
           <input type="text" id="assigned-crew" name="assigned-crew" readonly="readonly" value="">
         </label>
@@ -245,7 +245,7 @@
     </div>
 
 		<div class="row" style="margin-bottom:20px">
-			<div class="small-10 columns">
+			<div class="small-12 medium-10 columns">
 				<label for="crew"> Update Crew</label>
 				<select name="crew[]" id="crew" multiple="multiple" class="multi-select" data-placeholder="Update Crew" data-allow-clear="true">
 					<?php if(isset($crew)) : foreach($crew as $c) : ?>
@@ -257,23 +257,23 @@
 		</div>
 
 		<div class="row">
-	      <div class="small-5 columns">
+	      <div class="small-12 medium-5 columns">
 	        <label for="start">Start Date
-	          <input class="small-5 datepicker3" name="start" id="start" type="text" placeholder="Start Date" readonly="readonly">
+	          <input class="datepicker3" name="start" id="start" type="text" placeholder="Start Date" readonly="readonly">
 	        </label>
 	      </div>
 	  </div>
 
 		<div class="row">
-	      <div class="small-5 columns">
+	      <div class="small-12 medium-5 columns">
 	        <label for="end">End Date
-	          <input class="small-5 datepicker4" name="end" id="end" type="text" placeholder="End Date" readonly="readonly">
+	          <input class="datepicker4" name="end" id="end" type="text" placeholder="End Date" readonly="readonly">
 	        </label>
 	      </div>
 	  </div>
 
 		<div class="row">
-	      <div class="small-10 columns">
+	      <div class="small-12 medium-10 columns">
 	        <label for="notes">Notes</label>
 	          <textarea name="notes" id="notes" rows="4"></textarea>
 	      </div>

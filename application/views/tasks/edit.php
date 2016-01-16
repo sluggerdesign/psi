@@ -9,9 +9,9 @@
 	<?php $attributes = array('id' => 'edit-task'); ?>
   <?php echo form_open('tasks/edit', $attributes);?>
     <div class="row">
-        <div class="small-5 columns">
+        <div class="small-12 medium-5 columns">
           <label for="name">Task Name
-            <input class="small-5 columns" name="name" id="name" type="text" placeholder="Task Name" value="<?=$t->name;?>">
+            <input name="name" id="name" type="text" placeholder="Task Name" value="<?=$t->name;?>">
             <input name="id" id="id" type="hidden" value="<?=$t->id;?>">
           </label>
         </div>
