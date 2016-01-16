@@ -30,9 +30,12 @@
 <?php endif ?>
 
 <div class="row">
-	<div class="small-12 columns">
-		<h3>Branches</h3>
-	</div>
+  <div class="small-6 columns">
+    <h3>Branches</h3>
+  </div>
+  <div class="small-6 columns text-right">
+    <a href="/branches/create" class="button"><i class="fi-plus"></i> Add Branch</a>
+  </div>
 </div>
 
 <div class="row">

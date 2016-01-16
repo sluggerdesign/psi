@@ -40,27 +40,31 @@
 <?php endif ?>
 
 <div class="row">
-	<div class="small-12 columns">
-		<h3>Jobs</h3>
-	</div>
+  <div class="small-6 columns">
+    <h3>Jobs</h3>
+  </div>
+  <div class="small-6 columns text-right">
+    <a href="/jobs/create" class="button"><i class="fi-plus"></i> Add Job</a>
+  </div>
 </div>
 
-<?php $attributes = array('id' => 'filter-jobs'); ?>
-<?php echo form_open('jobs/filter', $attributes);?>
+<?php $attributes = array('id' => 'filter-branches'); ?>
+<?php echo form_open('jobs', $attributes);?>
 <div class="row jobs-search-module">
   <div class="small-12 medium-4 large-4 columns">
     <label for="Branch">Filter by Branch</label>
     <select name="branch" id="branch">
-      <?php if($filters) : ?>
-        <?php if(isset($filters)) : foreach($filters as $f) : ?>
+      <?php if ($this->session->flashdata('filter')) : ?>
+        <?php if(isset($branches)) : foreach($branches as $b) : ?>
           <option value="All">Show All</option>
-          <option value="<?=$f->value;?>" selected><?=$f->name;?></option>
+          <option value="<?=$b->id;?>" selected><?=$b->name;?></option>
         <?php endforeach; ?>
         <?php endif; ?>
       <?php else : ?>
         <option value="All">Show All</option>
       <?php endif ?>
-      <?php if(isset($branches)) : foreach($branches as $b) : ?>
+
+      <?php if(isset($branches_menu)) : foreach($branches_menu as $b) : ?>
         <option value="<?=$b->id;?>"><?=$b->name;?></option>
       <?php endforeach; ?>
       <?php endif; ?>

@@ -30,9 +30,12 @@
 <?php endif ?>
 
 <div class="row">
-	<div class="small-12 columns">
-		<h3>Tasks</h3>
-	</div>
+  <div class="small-6 columns">
+    <h3>Tasks</h3>
+  </div>
+  <div class="small-6 columns text-right">
+    <a href="/tasks/create" class="button"><i class="fi-plus"></i> Add Task</a>
+  </div>
 </div>
 
 <div class="row">

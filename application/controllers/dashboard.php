@@ -10,26 +10,22 @@ class Dashboard extends CI_Controller {
 		$this->load->model('Workmodel');
 
 		$data['title'] = "Dashboard | Petroleum Solutions Project Management";
-		$data['allbranches'] = $this->Branchesmodel->getRecords();
 		$data['jobs'] = $this->Jobsmodel->getRecords();
 		$data['work'] = $this->Workmodel->getAllRecords();
+		$data['branches_menu'] = $this->Branchesmodel->getActiveRecords();
 
-		if ($data['allbranches']) {
-			$data['branches'] = array();
-			foreach ($data['allbranches'] as $b) {
-				foreach ($data['jobs'] as $j) {
-					if ($j->branch == $b->id && $j->completed == NULL) {
-						$o = new stdClass;
-    				$o->id=$b->id;
-    				$o->name=$b->name;
-						array_push($data['branches'], $o);
-					}
-				}
+		if($_POST) {
+			$id = $this->input->post('branch');
+
+			if ($id == "All") {
+				redirect('dashboard');
 			}
-			$data['branches'] = array_map('json_encode', $data['branches']);
-			$data['branches'] = array_unique($data['branches']);
-			$data['branches'] = array_map('json_decode', $data['branches']);
-			sort($data['branches']);
+
+			$data['branches'] = $this->Branchesmodel->getRecord($id);
+			$this->session->set_flashdata('filter', 'true');
+
+		} else {
+			$data['branches'] = $this->Branchesmodel->getActiveRecords();
 		}
 
 		$this->load->view('header', $data);

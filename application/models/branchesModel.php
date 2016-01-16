@@ -32,6 +32,23 @@ class Branchesmodel extends CI_Model {
 			}
 	}
 
+	function getActiveRecords() {
+		$this->db->select("jobs.*,branches.*");
+		$this->db->from("jobs");
+		$this->db->join("branches","branches.id = jobs.branch");
+		$this->db->order_by('branches.name', 'asc');
+		$this->db->group_by('branches.name');
+		$this->db->distinct();
+		$q = $this->db->get();
+
+		if($q->num_rows() > 0){
+				foreach($q->result() as $row) {
+					$data[] =$row;
+			}
+			return $data;
+			}
+	}
+
 	function create($data)
 	{
 		$this->db->insert('branches', $data);

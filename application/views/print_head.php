@@ -34,33 +34,3 @@
   </head>
 
   <body>
-
-    <header>
-      <div class="title-bar" data-responsive-toggle="realEstateMenu" data-hide-for="small">
-        <button class="menu-icon" type="button" data-toggle></button>
-        <div class="title-bar-title">Menu</div>
-      </div>
-      <div class="top-bar" id="realEstateMenu">
-        <div class="top-bar-left">
-          <ul class="menu" data-responsive-menu="accordion">
-            <li class="menu-text">PSI SCHEDULE</li>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/jobs">Jobs</a></li>
-            <li><a href="/branches">Branches</a></li>
-            <li><a href="/crew">Crew</a></li>
-            <li><a href="/tasks">Tasks</a></li>
-            <li><a href="/users">Users</a></li>
-            <li><a href="/reports">Reports</a></li>
-          </ul>
-        </div>
-        <div class="top-bar-right">
-          <ul class="menu">
-            <?php $name = $this->session->userdata('name'); ?>
-            <?php if(!empty($name)) : ?>
-              <li>Signed in as <?=$name;?>&nbsp;</li>
-            <?php endif; ?>
-            <li><a class="button" href="<?=base_url();?>logout">Sign Out</a></li>
-          </ul>
-        </div>
-      </div>
-    </header>
