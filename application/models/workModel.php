@@ -61,6 +61,9 @@ class Workmodel extends CI_Model {
 
 	function delete($id)
 	{
+		$this->db->where('work', $id);
+		$this->db->delete('assigned');
+		
 		$this->db->where('id', $id);
 		$this->db->delete('work');
 	}

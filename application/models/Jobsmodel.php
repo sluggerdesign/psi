@@ -76,6 +76,10 @@ class Jobsmodel extends CI_Model {
 	{
 		$this->db->where('project', $id);
 		$this->db->delete('work');
+
+		$this->db->where('job', $id);
+		$this->db->delete('assigned');
+
 		$this->db->where('id', $id);
 		$this->db->delete('jobs');
 	}

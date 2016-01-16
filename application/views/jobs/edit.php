@@ -170,7 +170,7 @@
 				<label for="crew"> Crew</label>
 				<select name="crew[]" id="addcrew" multiple="multiple" class="multi-select" data-placeholder="Select Crew" data-allow-clear="true">
 					<?php if(isset($crew)) : foreach($crew as $c) : ?>
-						<option value="<?=$c->name;?>"><?=$c->name;?></option>
+						<option value="<?=$c->id;?>"><?=$c->name;?></option>
 					<?php endforeach; ?>
 					<?php endif; ?>
 				</select>
@@ -227,7 +227,6 @@
 			<div class="small-8 columns">
 				<label for="task">Task</label>
 				<select name="task" id="task">
-					<option value="">Choose Task</option>
 					<?php if(isset($tasks)) : foreach($tasks as $t) : ?>
 						<option value="<?=$t->name;?>"><?=$t->name;?></option>
 					<?php endforeach; ?>
@@ -248,8 +247,8 @@
 			<div class="small-10 columns">
 				<label for="crew"> Update Crew</label>
 				<select name="crew[]" id="crew" multiple="multiple" class="multi-select" data-placeholder="Update Crew" data-allow-clear="true">
-					<?php if(isset($crew)) : foreach($crew as $c) : ?>
-						<option value="<?=$c->name;?>"><?=$c->name;?></option>
+          <?php if(isset($crew)) : foreach($crew as $c) : ?>
+						<option value="<?=$c->id;?>"><?=$c->name;?></option>
 					<?php endforeach; ?>
 					<?php endif; ?>
 				</select>
@@ -297,18 +296,12 @@
 <!-- END EDIT TASK MODAL -->
 
 <script type="text/javascript">
-  // Initialize select2 Multiple Select
-  $('#crew').select2();
-  $('#addcrew').select2();
-</script>
-
-<script type="text/javascript">
 	$('.edit').click( function(){
+    $("#crew").select2("val", "");
 		$("#edit-work").attr("action", "<?=base_url()?>work/edit/" + $(this).data('id'));
 		$.getJSON("<?=base_url()?>work/edit/" + $(this).data('id') + "/", function(result) {
 			$.each(result, function(i, field) {
         $('#assigned-crew').val(field.crew);
-        $("#crew").select2("val", "");
         $('#task').val(field.task);
 				$('#start').val(field.start);
 				$('#end').val(field.end);
@@ -316,6 +309,12 @@
 			});
 		});
 	});
+</script>
+
+<script type="text/javascript">
+  // Initialize select2 Multiple Select
+  $('#crew').select2();
+  $('#addcrew').select2();
 </script>
 
 <script type="text/javascript">
