@@ -12,7 +12,7 @@ class Dashboard extends CI_Controller {
 		$data['title'] = "Dashboard | Petroleum Solutions Project Management";
 		$data['jobs'] = $this->Jobsmodel->getRecords();
 		$data['work'] = $this->Workmodel->getAllRecords();
-		$data['branches_menu'] = $this->Branchesmodel->getActiveRecords();
+		$data['branches_menu'] = $this->Branchesmodel->getActiveRecords(NULL);
 
 		if($_POST) {
 			$id = $this->input->post('branch');
@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller {
 			$this->session->set_flashdata('filter', 'true');
 
 		} else {
-			$data['branches'] = $this->Branchesmodel->getActiveRecords();
+			$data['branches'] = $this->Branchesmodel->getActiveRecords(NULL);
 		}
 
 		$this->load->view('header', $data);

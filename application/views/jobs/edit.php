@@ -169,10 +169,18 @@
 			<div class="small-12 medium-10 columns">
 				<label for="crew"> Crew</label>
 				<select name="crew[]" id="addcrew" multiple="multiple" class="multi-select" data-placeholder="Select Crew" data-allow-clear="true">
-					<?php if(isset($crew)) : foreach($crew as $c) : ?>
-						<option value="<?=$c->id;?>"><?=$c->name;?></option>
-					<?php endforeach; ?>
-					<?php endif; ?>
+          <optgroup label="Available Crew">
+            <?php if(isset($available)) : foreach($available as $c) : ?>
+  						<option value="<?=$c->id;?>"><?=$c->name;?></option>
+  					<?php endforeach; ?>
+  					<?php endif; ?>
+          </optgroup>
+          <optgroup label="Assigned Crew">
+            <?php if(isset($assigned)) : foreach($assigned as $a) : ?>
+  						<option value="<?=$a->crew;?>"><?=$a->name;?></option>
+  					<?php endforeach; ?>
+  					<?php endif; ?>
+          </optgroup>
 				</select>
 			</div>
 		</div>
@@ -243,14 +251,22 @@
       </div>
     </div>
 
-		<div class="row" style="margin-bottom:20px">
+    <div class="row" style="margin-bottom:20px">
 			<div class="small-12 medium-10 columns">
 				<label for="crew"> Update Crew</label>
-				<select name="crew[]" id="crew" multiple="multiple" class="multi-select" data-placeholder="Update Crew" data-allow-clear="true">
-          <?php if(isset($crew)) : foreach($crew as $c) : ?>
-						<option value="<?=$c->id;?>"><?=$c->name;?></option>
-					<?php endforeach; ?>
-					<?php endif; ?>
+				<select name="crew[]" id="crew" multiple="multiple" class="multi-select" data-placeholder="Select Crew" data-allow-clear="true">
+          <optgroup label="Available Crew">
+            <?php if(isset($available)) : foreach($available as $c) : ?>
+  						<option value="<?=$c->id;?>"><?=$c->name;?></option>
+  					<?php endforeach; ?>
+  					<?php endif; ?>
+          </optgroup>
+          <optgroup label="Assigned Crew">
+            <?php if(isset($assigned)) : foreach($assigned as $a) : ?>
+  						<option value="<?=$a->crew;?>"><?=$a->name;?></option>
+  					<?php endforeach; ?>
+  					<?php endif; ?>
+          </optgroup>
 				</select>
 			</div>
 		</div>

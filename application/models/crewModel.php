@@ -32,10 +32,30 @@ class Crewmodel extends CI_Model {
 			}
 	}
 
+	function getAvailable() {
+		$this->db->select("assigned.*,crew.*");
+		$this->db->from("crew");
+		$this->db->join("assigned","assigned.crew = crew.id", "left");
+		$this->db->where("assigned.assigned",NULL)->or_where("assigned.id",NULL);
+		$this->db->order_by('crew.name', 'asc');
+		$this->db->group_by('crew.name');
+		$this->db->distinct();
+		$q = $this->db->get();
+
+		if($q->num_rows() > 0){
+				foreach($q->result() as $row) {
+					$data[] =$row;
+			}
+			return $data;
+			}
+	}
+
 	function getAssigned()
 	{
 		$this->db->order_by("name", "asc");
 		$this->db->where('assigned', TRUE);
+		$this->db->group_by('name');
+		$this->db->distinct();
 		$q = $this->db->get('assigned');
 
 		if($q->num_rows() > 0){

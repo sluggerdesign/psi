@@ -54,14 +54,19 @@
   <div class="small-12 medium-4 large-4 columns">
     <label for="Branch">Filter by Branch</label>
     <select name="branch" id="branch">
-      <?php if ($this->session->flashdata('filter')) : ?>
+      <?php if ($this->session->flashdata('filter') == 'single') : ?>
         <?php if(isset($branches)) : foreach($branches as $b) : ?>
           <option value="All">Show All</option>
+          <option value="All Completed">Show Completed</option>
           <option value="<?=$b->id;?>" selected><?=$b->name;?></option>
         <?php endforeach; ?>
         <?php endif; ?>
+      <?php elseif($this->session->flashdata('filter') == 'completed') : ?>
+        <option value="All">Show All</option>
+        <option value="All Completed" selected>Show Completed</option>
       <?php else : ?>
         <option value="All">Show All</option>
+        <option value="All Completed">Show Completed</option>
       <?php endif ?>
 
       <?php if(isset($branches_menu)) : foreach($branches_menu as $b) : ?>

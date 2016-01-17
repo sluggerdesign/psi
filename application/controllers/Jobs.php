@@ -14,15 +14,19 @@ class Jobs extends CI_Controller {
 
 		if($_POST) {
 			$id = $this->input->post('branch');
+			switch ($id) {
+		    case "All":
+	        redirect('jobs');
+		    case "All Completed":
+					$data['jobs'] = $this->Jobsmodel->getCompletedRecords();
 
-			if ($id == "All") {
-				redirect('jobs');
+					$this->load->view('jobs/index');
+					$this->load->view('footer');
+	        return;
+		    default:
+					$data['branches'] = $this->Branchesmodel->getRecord($id);
+					$data['jobs'] = $this->Jobsmodel->getActiveRecords($id);
 			}
-
-			$data['branches'] = $this->Branchesmodel->getRecord($id);
-			$data['jobs'] = $this->Jobsmodel->getActiveRecords($id);
-			$this->session->set_flashdata('filter', 'true');
-
 		} else {
 			$data['branches'] = $this->Branchesmodel->getActiveRecords();
 		}

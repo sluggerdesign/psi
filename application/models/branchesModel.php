@@ -32,11 +32,12 @@ class Branchesmodel extends CI_Model {
 			}
 	}
 
-	function getActiveRecords() {
+	function getActiveRecords($status) {
 		$this->db->select("jobs.*,branches.*");
 		$this->db->from("jobs");
 		$this->db->join("branches","branches.id = jobs.branch");
 		$this->db->order_by('branches.name', 'asc');
+		$this->db->where('jobs.completed', $status);
 		$this->db->group_by('branches.name');
 		$this->db->distinct();
 		$q = $this->db->get();
