@@ -107,8 +107,8 @@
   			      <td><a href="/jobs/edit/<?=$j->id;?>"><i class="fi-pencil"></i> Edit</a></td>
   						<td><a href="/jobs/delete/<?=$j->id;?>/<?=$j->name;?>"><i class="fi-x"></i> Delete</a></td>
   			    </tr>
-          <?php endforeach; ?>
-          <?php endif; ?>
+          <?php endforeach ?>
+          <?php endif ?>
 			  </tbody>
 			</table>
 	</div>
@@ -119,3 +119,11 @@
     <a href="/jobs/create" class="button"><i class="fi-plus"></i> Add New</a>
 	</div>
 </div>
+
+<?php if(empty($jobs)) : ?>
+<div class="row">
+  <div class="small-12 columns text-center">
+    <h4>No Results Were Found.</h4>
+  </div>
+</div>
+<?php endif ?>
