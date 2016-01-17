@@ -10,7 +10,7 @@ class Jobs extends CI_Controller {
 
 		$data['title'] = "Jobs | Petroleum Solutions Project Management";
 		$data['jobs'] = $this->Jobsmodel->getRecords();
-		$data['branches_menu'] = $this->Branchesmodel->getActiveRecords();
+		$data['branches_menu'] = $this->Branchesmodel->getActiveRecords(NULL);
 
 		if($_POST) {
 			$id = $this->input->post('branch');
@@ -18,17 +18,21 @@ class Jobs extends CI_Controller {
 		    case "All":
 	        redirect('jobs');
 		    case "All Completed":
+					$data['branches'] = $this->Branchesmodel->getActiveRecords('1');
 					$data['jobs'] = $this->Jobsmodel->getCompletedRecords();
+					$this->session->set_flashdata('filter', 'completed');
 
+					$this->load->view('header', $data);
 					$this->load->view('jobs/index');
 					$this->load->view('footer');
 	        return;
 		    default:
 					$data['branches'] = $this->Branchesmodel->getRecord($id);
 					$data['jobs'] = $this->Jobsmodel->getActiveRecords($id);
+					$this->session->set_flashdata('filter', 'single');
 			}
 		} else {
-			$data['branches'] = $this->Branchesmodel->getActiveRecords();
+			$data['branches'] = $this->Branchesmodel->getActiveRecords(NULL);
 		}
 
 		$this->load->view('header', $data);
@@ -92,6 +96,8 @@ class Jobs extends CI_Controller {
 		$data['work'] = $this->Workmodel->getRecords($this->uri->segment(3));
 		$data['tasks'] = $this->Tasksmodel->getRecords();
 		$data['crew'] = $this->Crewmodel->getRecords();
+		$data['assigned'] = $this->Crewmodel->getAssigned();
+		$data['available'] = $this->Crewmodel->getAvailable();
 
 		if($_POST) {
 			$id = $this->input->post('id');
