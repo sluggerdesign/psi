@@ -95,9 +95,15 @@
 	                    $WorkDateRange = createDateRangeArray($w->start, $w->end);
 	                    $crewCollection = explode(',', $w->crew);
 
+											foreach ($tasks as $t) {
+												if ($w->taskid == $t->id) {
+													$color = $t->color;
+												}
+											}
+				
 											for ( $x = 0; $x < 7; $x++ )
                       if (in_array(date( "Y-m-d", mktime( 0, 0, 0, $month, $day_start + $x, $year)), $WorkDateRange))
-                      	echo "<td align='center' class='selected-date'><a data-open='edittaskModal' data-id=".$w->id." data-jid=".$j->id." class='edit'><span>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</span><span class='crew-count'>".count($crewCollection)."</span></a></td>";
+                      	echo "<td align='center' class='selected-date' style='background:" . $color . "'><a data-open='edittaskModal' data-id=".$w->id." data-jid=".$j->id." class='edit'><span>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</span><span class='crew-count'>".count($crewCollection)."</span></a></td>";
                       else
                       	echo "<td align='center'>".date( "d", mktime( 0, 0, 0, $month, $day_start + $x, $year)). "</td>";
 					          ?>

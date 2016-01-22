@@ -158,7 +158,7 @@
 				<select name="task">
 					<option value="">Choose Task</option>
 					<?php if(isset($tasks)) : foreach($tasks as $t) : ?>
-						<option value="<?=$t->name;?>"><?=$t->name;?></option>
+						<option value="<?=$t->id;?>"><?=$t->name;?></option>
 					<?php endforeach; ?>
 					<?php endif; ?>
 				</select>
@@ -236,7 +236,7 @@
 				<label for="task">Task</label>
 				<select name="task" id="task">
 					<?php if(isset($tasks)) : foreach($tasks as $t) : ?>
-						<option value="<?=$t->name;?>"><?=$t->name;?></option>
+						<option value="<?=$t->id;?>"><?=$t->name;?></option>
 					<?php endforeach; ?>
 					<?php endif; ?>
 				</select>

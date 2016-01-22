@@ -7,10 +7,11 @@ class Work extends CI_Controller {
 		$this->authorize();
 		$this->load->model('Workmodel');
 		$this->load->model('Crewmodel');
+		$this->load->model('Tasksmodel');
 
 		if($_POST) {
 			$job = $this->input->post('id');
-			$task = $this->sanitize->trimFirstCaps($this->input->post('task'));
+			$taskid = $this->input->post('task');
 			$crew = $this->input->post('crew');
 			$notes = $this->input->post('notes');
 			$start = $this->input->post('start');
@@ -28,9 +29,15 @@ class Work extends CI_Controller {
 				$work_crew = NULL;
 			}
 
+			$data['task'] = $this->Tasksmodel->getRecord($taskid);
+			foreach ($data['task'] as $t) {
+				$task = $t->name;
+			}
+
 			$data = array(
 				'project' => $job,
 				'task' => $task,
+				'taskid' => $taskid,
 				'crew' => $work_crew,
 				'notes' => $notes,
 				'start' => $start,
@@ -66,12 +73,13 @@ class Work extends CI_Controller {
 		$this->load->model('Workmodel');
 		$this->load->model('Jobsmodel');
 		$this->load->model('Crewmodel');
+		$this->load->model('Tasksmodel');
 
 		$id = $this->uri->segment(3);
 
 		if($_POST) {
 			$job = $this->input->post('id');
-			$task = $this->sanitize->trimFirstCaps($this->input->post('task'));
+			$taskid = $this->input->post('task');
 			$crew = $this->input->post('crew');
 			$notes = $this->input->post('notes');
 			$start = $this->input->post('start');
@@ -87,9 +95,15 @@ class Work extends CI_Controller {
 				$work_crew = implode(', ', $arr);
 			}
 
+			$data['task'] = $this->Tasksmodel->getRecord($taskid);
+			foreach ($data['task'] as $t) {
+				$task = $t->name;
+			}
+
 			$data = array(
 				'project' => $job,
 				'task' => $task,
+				'taskid' => $taskid,
 				'crew' => $work_crew,
 				'notes' => $notes,
 				'start' => $start,

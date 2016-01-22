@@ -84,6 +84,31 @@ class Crew extends CI_Controller {
 		redirect('crew/index');
 	}
 
+	// function parse()
+	// {
+	// 	$this->authorize();
+	// 	$this->load->model('Crewmodel');
+	//
+	// 	$filename = "./uploads/crew.csv";
+	//
+	//     $handle = fopen("$filename", "r");
+	//
+	// 	$row = 0;
+	//     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
+	//     {
+	// 	    $row++;
+	// 	    if ($row > 1) {
+	// 	   		$data = array(
+	// 	   			'name' => $data[0],
+	// 	   			'branch' => $data[1],
+	// 					'leader' => $data[2]
+	// 	   		);
+	// 	        $this->Crewmodel->create($data);
+  //      	    }
+ // 		}
+  //    	fclose($handle);
+	// }
+
 	// Authentication
 
 	private

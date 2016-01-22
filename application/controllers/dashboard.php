@@ -8,10 +8,12 @@ class Dashboard extends CI_Controller {
 		$this->load->model('Branchesmodel');
 		$this->load->model('Jobsmodel');
 		$this->load->model('Workmodel');
+		$this->load->model('Tasksmodel');
 
 		$data['title'] = "Dashboard | Petroleum Solutions Project Management";
 		$data['jobs'] = $this->Jobsmodel->getRecords();
 		$data['work'] = $this->Workmodel->getAllRecords();
+		$data['tasks'] = $this->Tasksmodel->getRecords();
 		$data['branches_menu'] = $this->Branchesmodel->getActiveRecords(NULL);
 
 		if($_POST) {
